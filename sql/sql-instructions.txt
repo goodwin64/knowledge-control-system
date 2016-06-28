@@ -1,0 +1,16 @@
+	*1:
+Binary sum, so each next answer increases the answers sum by power of 2: 1, 2, 4, 8...
+If there is only one (or 0) correct answer, then the "answers sum" will be the power of 2.
+If there are 5 options and only the 1st and the 3rd answers are correct, then the sum will be 1*1 + 2*0 + 4*1 + 8*0 + 16*0 = 5.
+If all answers are corrects then the sum will be equals to options^2 - 1, for 10 questions - 1023.
+
+
+
+	*2:
+1: 				text
+2: 				image
+3 (1+2): 		text + image
+4: 				audio
+8: 				video
+15 (1+2+4+8):	text + image + audio + video
+And so on...
