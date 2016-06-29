@@ -16,7 +16,7 @@ var defaultRequest = function(req, res){
 	res.send("Please use /restapi/tests or /restapi/questions");
 };
 
-questionInfoExceptAnswers = "`id_test`, `title`, `options_content`, `options_concat`";
+var questionInfoExceptAnswers = "id_test, title, options_content, options_concat";
 // -------------------------------------------------- END OF GLOBAL VARIABLES
 
 app.get('/', defaultRequest);
@@ -29,7 +29,7 @@ app.get('/restapi/tests', function(req, res) {
 		"Tests":""
 	};
 	
-	connection.query("SELECT * FROM `tests`", function(err, rows) {
+	connection.query("SELECT * FROM tests", function(err, rows) {
 		if (rows.length != 0) {
 			data["error"] = 0;
 			data["Tests"] = rows;
@@ -48,7 +48,7 @@ app.get('/restapi/questions', function(req, res) {
 		"Questions":""
 	};
 	
-	connection.query("SELECT " + questionInfoExceptAnswers + " FROM `questions`", function(err, rows) {
+	connection.query("SELECT " + questionInfoExceptAnswers + " FROM questions", function(err, rows) {
 		if (rows.length != 0) {
 			data["error"] = 0;
 			data["Questions"] = rows;
@@ -68,11 +68,18 @@ app.get('/restapi/tests/:id', function(req, res) {
 		"Info":""
 	};
 	if (!!testId) {
-		var queryStringT = "SELECT * FROM tests WHERE `id`=?"; // TODO: JOIN ?
-		var queryStringQ = "SELECT " + questionInfoExceptAnswers + " FROM questions WHERE `id_test`=?";
+		var questionsColumns = questionInfoExceptAnswers.replace(/,/g, '').split(' ').map(function(elem) {
+			return "questions." + elem;
+		}).join(', ');
+		var testsColumns = "tests.duration, tests.complexity, tests.subject";
+		var queryString = "SELECT " + questionsColumns +
+		", " + testsColumns +
+		" FROM questions INNER JOIN tests" +
+		" ON questions.id_test=tests.id" +
+		" WHERE questions.id_test=?";
 		var queryKeys = [testId];
 
-		connection.query(queryStringQ, queryKeys, function(err, rows, fields) {
+		connection.query(queryString, queryKeys, function(err, rows, fields) {
 			if (!!err) {
 				data["Info"] = "Error occured while reading data";
 			} else {
@@ -95,7 +102,7 @@ app.get('/restapi/questions/:id', function(req, res) {
 		"Info":""
 	};
 	if (!!questionId) {
-		var queryString = "SELECT " + questionInfoExceptAnswers + " FROM questions WHERE `id`=?";
+		var queryString = "SELECT " + questionInfoExceptAnswers + " FROM questions WHERE id=?";
 		var queryKeys = [questionId];
 		connection.query(queryString, queryKeys, function(err, rows, fields) {
 			if (!!err) {
