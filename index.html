@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Index page</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var curPath = window.location.href;
+		var curDir = curPath.slice(0, curPath.lastIndexOf("/") + 1);
+		window.location.replace(curDir + "pages/index.html");
+	</script>
+</body>
+</html>
