@@ -1,6 +1,6 @@
 # knowledge-control-system
 Course project for EPAM Academy. Subject: "Knowledge control system (tests)".
-You can see the result [HERE](http://maxdon.xyz/)
+You can see the result [HERE](https://goodwin64.github.io/knowledge-control-system/)
 
 ## TODO-list
 ###### Общие требования:
