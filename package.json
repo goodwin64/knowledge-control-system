@@ -1,0 +1,32 @@
+{
+  "name": "knowledge-control-system",
+  "version": "0.0.0",
+  "description": "Project for EPAM Academy, Kyiv (JS 2016)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goodwin64/knowledge-control-system.git"
+  },
+  "keywords": [
+    "test",
+    "tests",
+    "auto",
+    "test",
+    "knowledge",
+    "control",
+    "check",
+    "knowledge",
+    "level"
+  ],
+  "author": "Max Donchenko (wereya2@yandex.ru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/goodwin64/knowledge-control-system/issues"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.1"
+  }
+}
