@@ -23,7 +23,6 @@ header {
 	padding: 10px;
 	
 	h1 {
-		// border-radius: 10px;
 		border: 2px solid #000;
 		text-align: center;
 		font-size: 48px;
@@ -31,26 +30,9 @@ header {
 }
 
 nav {
-	// padding: 10px;
-	// border-radius: 0 0 10px 10px;
 	border: 2px solid #000;
-	border-top: 0px;
+	border-top: 0;
 	$links-count: 5;
-
-	// a {
-	// 	height: 100%;
-	// 	display: inline-block;
-	// 	width: 100% / $links-count;
-	// 	text-align: center;
-	// 	text-decoration: none;
-	// 	color: #00b5a5;
-		
-
-	// 	&:hover {
-	// 		color: #fefefe;
-	// 		background: #000;
-	// 	}
-	// }
 
 	.link-wrap {
 		display: inline-block;
@@ -63,8 +45,6 @@ nav {
 			font-size: x-large;
 		}
 	}
-
-
 }
 
 .content {
