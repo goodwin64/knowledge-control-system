@@ -3,9 +3,16 @@ function onload() {
     var inputQuestionsNumber = document.getElementById("questions-number");
     var submitQuestionsNumber = document.getElementById("submit-questions-number");
     submitQuestionsNumber.addEventListener("click", function () {
+        var oldQuestionNumber = testBody.childElementCount;
         var newQuestionsNumber = +inputQuestionsNumber.value;
-        for (var i = 1; i <= newQuestionsNumber; i++) {
-            testBody.appendChild(generateQuestionDiv(i));
+        if (newQuestionsNumber > oldQuestionNumber) {
+            for (let i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
+                testBody.appendChild(generateQuestionDiv(i));
+            }
+        } else {
+            for (let i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
+                testBody.removeChild(testBody.lastElementChild);
+            }
         }
     }, false)
 }
