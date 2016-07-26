@@ -1,7 +1,44 @@
 .content {
-  .question-wrapper {
-    border: 1px solid;
-    margin: 5px;
-    padding: 5px;
+  #test-creation-body {
+    overflow: hidden;
+
+    .question-wrapper {
+      $question-wrapper-margin: 1%;
+      $question-wrapper-padding: 1%;
+      margin: $question-wrapper-margin;
+      padding: $question-wrapper-padding;
+      width: 33.33% - 2 * ($question-wrapper-margin + $question-wrapper-padding); // from left and right sides
+      float: left;
+      position: relative;
+      -webkit-box-shadow: 0px 0px 5px 1px rgba(128,128,128,1);
+         -moz-box-shadow: 0px 0px 5px 1px rgba(128,128,128,1);
+              box-shadow: 0px 0px 5px 1px rgba(128,128,128,1);
+
+      h3 {
+        float: left;
+        max-width: 50%;
+      }
+
+      select {
+        right: 1.5%;
+        position: absolute;
+        max-width: 50%;
+      }
+
+      .option-wrapper {
+        &:first-of-type {
+          clear: both;
+        }
+
+        input[type="radio"] {
+          width: 5%;
+          min-width: 20px;
+        }
+
+        input[type="text"] {
+          max-width: 90%;
+        }
+      }
+    }
   }
 }

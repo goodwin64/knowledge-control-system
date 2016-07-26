@@ -1,37 +1,11 @@
 function onload() {
-    var testBody = document.getElementById("test-creation-body");
-    var inputQuestionsNumber = document.getElementById("questions-number");
     var submitQuestionsNumber = document.getElementById("submit-questions-number");
 
     // on changing number of questions
-    submitQuestionsNumber.addEventListener("click", function () {
-        var oldQuestionNumber = testBody.childElementCount;
-        var newQuestionsNumber = +inputQuestionsNumber.value;
-        if (newQuestionsNumber > oldQuestionNumber) {
-            for (let i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
-                testBody.appendChild(generateQuestionsDiv(i));
-            }
-        } else {
-            for (let i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
-                testBody.removeChild(testBody.lastElementChild);
-            }
-        }
-    }, false);
+    submitQuestionsNumber.addEventListener("click", onSubmitQuestionsNumber);
 
     // test "footer" - action buttons after all questions
-    var allButtons = document.getElementById("all-buttons-wrapper");
-    var testSubmit = document.createElement("button");
-        testSubmit.innerText = "Submit";
-        testSubmit.className += " action-button test-submit";
-    var testCancel = document.createElement("button");
-        testCancel.innerText = "Cancel";
-        testCancel.className += " action-button test-cancel";
-    var testSaveDraft = document.createElement("button");
-        testSaveDraft.innerText = "Save as draft";
-        testSaveDraft.className += " action-button test-save-draft";
-        allButtons.appendChild(testSubmit);
-        allButtons.appendChild(testCancel);
-        allButtons.appendChild(testSaveDraft);
+    fillTestFooter();
 }
 
 
@@ -50,7 +24,8 @@ function generateQuestionsDiv(indexQuestion) {
         questionDiv.appendChild(questionTypeSelect);
 
     // options (inside base)
-    for (let indexOption = 1; indexOption <= 3; indexOption++) {
+    let TEST_OPTIONS_COUNT = 3; // on the development
+    for (let indexOption = 1; indexOption <= TEST_OPTIONS_COUNT; indexOption++) {
         var optionWrapper = generateOptionsDiv(indexQuestion, indexOption);
         questionDiv.appendChild(optionWrapper);
     }
@@ -65,16 +40,17 @@ function generateOptionsDiv(indexQuestion, indexOption) {
         optionButton.setAttribute("type", "radio");
         optionButton.name = "option-button-" + indexQuestion;
         optionButton.id = optionButton.name + "-" + indexOption;
-        // option text
-    var optionContent = document.createElement("input");/*"label");
-         optionContent.setAttribute("for", optionButton.getAttribute("id"));
-         optionContent.innerText = "option " + indexOption;
-         optionContent.contentEditable = true;*/
+
+    // option text
+    var optionContent = document.createElement("input");
+        optionContent.setAttribute("type", "text");
         optionContent.setAttribute("placeholder", "e.g. option " + indexOption);
+
     var optionWrapper = document.createElement("div");
         optionWrapper.className += " option-wrapper";
         optionWrapper.appendChild(optionButton);
         optionWrapper.appendChild(optionContent);
+
     return optionWrapper;
 }
 
@@ -119,6 +95,68 @@ function setOptionsTo(selectNode, childrenOptionsType) {
             if (siblingOptions[i].className.indexOf("option-wrapper") != -1) {
                 siblingOptions[i].querySelector("input").setAttribute("type", childrenOptionsType);
             }
+        }
+    }
+}
+
+
+/**
+ * Performs the set of DOM-operations in test footer:
+ * buttons
+ * TODO: add sharing test in social media
+ */
+function fillTestFooter() {
+    var allButtons = document.getElementById("all-buttons-wrapper");
+
+    var testSubmit = document.createElement("button");
+        testSubmit.innerText = "Submit";
+        testSubmit.className += " action-button";
+        testSubmit.id = "test-submit";
+        testSubmit.addEventListener("click", function() {
+            // "submit" test IMPL
+        });
+
+    var testCancel = document.createElement("button");
+        testCancel.innerText = "Cancel";
+        testCancel.className += " action-button";
+        testCancel.id = "test-cancel";
+        testSubmit.addEventListener("click", function() {
+            // "cancel" test IMPL
+        });
+
+    var testSaveDraft = document.createElement("button");
+        testSaveDraft.innerText = "Save as draft";
+        testSaveDraft.className += " action-button";
+        testSaveDraft.id = "test-save-draft";
+        testSubmit.addEventListener("click", function() {
+            // "save as draft" test IMPL
+        });
+
+    allButtons.appendChild(testSubmit);
+    allButtons.appendChild(testCancel);
+    allButtons.appendChild(testSaveDraft);
+}
+
+
+function onSubmitQuestionsNumber() {
+    var testBody = document.getElementById("test-creation-body");
+    var inputQuestionsNumber = document.getElementById("questions-number");
+    var oldQuestionNumber = testBody.childElementCount;
+    var newQuestionsNumber = +inputQuestionsNumber.value;
+
+    if (newQuestionsNumber < +inputQuestionsNumber.min
+        || newQuestionsNumber > +inputQuestionsNumber.max) {
+        // this case means that user input value from keyboard, not by using increment buttons (HTML5 "bug")
+        return;
+    }
+
+    if (newQuestionsNumber > oldQuestionNumber) {
+        for (let i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
+            testBody.appendChild(generateQuestionsDiv(i));
+        }
+    } else {
+        for (let i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
+            testBody.removeChild(testBody.lastElementChild);
         }
     }
 }
