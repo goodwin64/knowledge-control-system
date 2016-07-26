@@ -10,9 +10,9 @@
       width: 33.33% - 2 * ($question-wrapper-margin + $question-wrapper-padding); // from left and right sides
       float: left;
       position: relative;
-      -webkit-box-shadow: 0px 0px 5px 1px rgba(128,128,128,1);
-         -moz-box-shadow: 0px 0px 5px 1px rgba(128,128,128,1);
-              box-shadow: 0px 0px 5px 1px rgba(128,128,128,1);
+      -webkit-box-shadow: 0 0 5px 1px rgba(128,128,128,1);
+         -moz-box-shadow: 0 0 5px 1px rgba(128,128,128,1);
+              box-shadow: 0 0 5px 1px rgba(128,128,128,1);
 
       h3 {
         float: left;
@@ -30,7 +30,7 @@
           clear: both;
         }
 
-        input[type="radio"] {
+        input:first-of-type {
           width: 5%;
           min-width: 20px;
         }
@@ -38,6 +38,28 @@
         input[type="text"] {
           max-width: 90%;
         }
+      }
+    }
+  }
+
+  #test-creation-after {
+    #all-buttons-wrapper {
+      margin: auto;
+      width: 60%;
+
+      #test-submit {
+        background: #bfb;
+      }
+      #test-cancel {
+        background: #fbb;
+      }
+      #test-save-draft {
+        background: #bbf;
+      }
+
+      .action-button {
+        padding: 5px;
+        width: 33.33%;
       }
     }
   }

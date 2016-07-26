@@ -1,8 +1,15 @@
 function onload() {
     var submitQuestionsNumber = document.getElementById("submit-questions-number");
+    var inputQuestionsNumber = document.getElementById("questions-number");
 
     // on changing number of questions
     submitQuestionsNumber.addEventListener("click", onSubmitQuestionsNumber);
+    inputQuestionsNumber.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+            document.getElementById("submit-questions-number").click();
+        }
+    });
 
     // test "footer" - action buttons after all questions
     fillTestFooter();
@@ -150,6 +157,7 @@ function onSubmitQuestionsNumber() {
         return;
     }
 
+    // add / delete questions
     if (newQuestionsNumber > oldQuestionNumber) {
         for (let i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
             testBody.appendChild(generateQuestionsDiv(i));
@@ -159,4 +167,8 @@ function onSubmitQuestionsNumber() {
             testBody.removeChild(testBody.lastElementChild);
         }
     }
+
+    // show buttons
+    var toShow = document.getElementById("test-creation-after");
+        toShow.removeAttribute("hidden");
 }
