@@ -13,7 +13,7 @@ function lazyRequireTask(taskName, path, options) {
 }
 
 lazyRequireTask('styles', './tasks/styles', {
-    src: 'app/scss/main.scss'
+    src: 'app/scss/*.scss'
 });
 
 lazyRequireTask('clean', './tasks/clean', {

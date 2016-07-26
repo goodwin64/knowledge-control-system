@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KCS: create test</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/create-test.css">
+    <script src="../js/create-test.js"></script>
+
+</head>
+<body>
+<div class="col-10 page-wrapper">
+    <header>
+        <h1>Can you pass it?</h1>
+        <nav>
+            <div class="link-wrap">
+                <a href="#">Tests</a>
+            </div>
+            <div class="link-wrap">
+                <a href="#">Subjects</a>
+            </div>
+            <div class="link-wrap">
+                <a href="#">Leaderboard</a>
+            </div>
+            <div class="link-wrap">
+                <a href="#">FAQ</a>
+            </div>
+            <div class="link-wrap">
+                <a href="#">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div id="test-creation-head">
+            <h1>Create your own test</h1>
+            <p>Number of questions:</p>
+            <input type="number" id="questions-number" min="1" max="50" value="5">
+            <button id="submit-questions-number">OK</button>
+        </div>
+        <div id="test-creation-body">
+            <!-- question 1, question 2, question 3... -->
+        </div>
+        <div id="test-creation-after">
+            <!-- check / submit / cancel -->
+        </div>
+    </div>
+</div>
+
+<footer class="col-10">
+    <details>
+        <summary>Copyright</summary>
+        <p>
+            Max Donchenko, Kyiv, 2016
+        </p>
+        <a href="mailto:wereya2@gmail.com">Write me</a>
+    </details>
+</footer>
+
+<script>
+    onload();
+</script>
+</body>
+</html>
