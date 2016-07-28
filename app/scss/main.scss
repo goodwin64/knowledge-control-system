@@ -21,76 +21,76 @@ $color-links: #0db7b7;
 // ------------------------------ page structure (#page-wrap)
 header {
     @extend .page-wrapper;
+	$header-elem-height: 50px;
 
     h1 {
         border: 2px solid #000;
-        text-align: center;
-        font-size: 48px;
-    }
-}
+	    padding-left: 5%;
+	    height: $header-elem-height;
+	    line-height: $header-elem-height;
 
-nav {
-	$links-count: 5;
-    border: 2px solid #000;
-    border-top: 0;
-    overflow: hidden;
-
-    ul {
-        $li-delimiter: 1px solid #000;
-        list-style-type: none;
-	    overflow: hidden;
-
-        li {
-            overflow: hidden;
-            float: left;
-	        $li-width: 70% / $links-count;
-            width: $li-width;
-            border-right: $li-delimiter;
-
-            &:nth-last-child(2) {
-                border-right: none;
-            }
-
-            &:last-child {
-                float: right;
-                border-right: none;
-	            width: $li-width * 2;
-
-	            a {
-		            width: 50% - 2 * 5%;
-	            }
-            }
-
-            a {
-	            width: 90%;
-	            margin: auto;
-	            padding: 12px 5% 12px 5%;
-                display: block;
-                float: left;
-                text-align: center;
-                font-size: x-large;
-            }
-        }
-
-	    .dropdown {
-		    &:hover .dropdown-content {
-			    display: block;
-			    z-index: 1;
-			    width: inherit;
-		    }
-
-		    .dropdown-content {
-			    display: none;
-			    position: absolute;
-			    background-color: #f9f9f9;
-			    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-
-			    a {
-				    text-align: left;
-			    }
-		    }
+	    span {
+		    color: #f88;
 	    }
     }
+
+	nav {
+		border: 2px solid #000;
+		border-top: 0;
+		overflow: hidden;
+
+		ul {
+			$li-delimiter: 1px solid #000;
+			list-style-type: none;
+			overflow: hidden;
+
+			li {
+				overflow: hidden;
+				float: left;
+				border-right: $li-delimiter;
+
+				&:nth-last-child(2) {
+					border-right: none;
+				}
+
+				&:last-child {
+					float: right;
+					border-right: none;
+				}
+
+				a {
+					width: 90%;
+					height: $header-elem-height;
+					line-height: $header-elem-height;
+					padding: 0 5%;
+					display: block;
+					float: left;
+					text-align: center;
+					font-size: x-large;
+				}
+			}
+
+			.dropdown {
+				&:hover .dropdown-content {
+					display: block;
+					z-index: 1;
+					width: inherit;
+					margin-top: $header-elem-height;
+				}
+
+				.dropdown-content {
+					display: none;
+					position: absolute;
+					background-color: #f9f9f9;
+					box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+					a {
+						text-align: left;
+					}
+				}
+			}
+		}
+	}
 }
 
 .content {
@@ -136,3 +136,11 @@ a {
         background: $color-links;
     }
 }
+
+// W3C recomendations
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1.12em; }
+h5 { font-size: .83em; }
+h6 { font-size: .75em; }
