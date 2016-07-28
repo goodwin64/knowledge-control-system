@@ -17,27 +17,32 @@ function onload() {
 
 
 function generateQuestionsDiv(indexQuestion) {
-    // question base (wrapper div)
-    var questionDiv = document.createElement("div");
-        questionDiv.className += " question-wrapper";
+    // question wrapper, for aligning
+    var questionWrapper = document.createElement("div");
+        questionWrapper.className += " question-wrapper";
+
+    // question wrapper, for margin-padding
+    var questionContent = document.createElement("div");
+        questionContent.className += " question-content";
 
     // question header
     var questionHeader = document.createElement("h3");
         questionHeader.innerText = "Question №" + indexQuestion;
-        questionDiv.appendChild(questionHeader);
+        questionContent.appendChild(questionHeader);
 
     // question type select (list)
     var questionTypeSelect = generateQuestionTypeSelector(["one-option", "multi-option"]);
-        questionDiv.appendChild(questionTypeSelect);
+        questionContent.appendChild(questionTypeSelect);
 
     // options (inside base)
     const TEST_OPTIONS_COUNT = 3; // on the development
     for (var indexOption = 1; indexOption <= TEST_OPTIONS_COUNT; indexOption++) {
         var optionWrapper = generateOptionsDiv(indexQuestion, indexOption);
-        questionDiv.appendChild(optionWrapper);
+        questionContent.appendChild(optionWrapper);
     }
 
-    return questionDiv;
+    questionWrapper.appendChild(questionContent);
+    return questionWrapper;
 }
 
 
@@ -113,35 +118,20 @@ function setOptionsTo(selectNode, childrenOptionsType) {
  * TODO: add sharing test in social media
  */
 function fillTestFooter() {
-    var allButtons = document.getElementById("all-buttons-wrapper");
+    var testSubmit = document.getElementById("test-submit");
+    testSubmit.addEventListener("click", function() {
+        // "submit" test IMPL
+    });
 
-    var testSubmit = document.createElement("button");
-        testSubmit.innerText = "Submit";
-        testSubmit.className += " action-button";
-        testSubmit.id = "test-submit";
-        testSubmit.addEventListener("click", function() {
-            // "submit" test IMPL
-        });
+    var testCancel = document.getElementById("test-cancel");
+    testSubmit.addEventListener("click", function() {
+        // "cancel" test IMPL
+    });
 
-    var testCancel = document.createElement("button");
-        testCancel.innerText = "Cancel";
-        testCancel.className += " action-button";
-        testCancel.id = "test-cancel";
-        testSubmit.addEventListener("click", function() {
-            // "cancel" test IMPL
-        });
-
-    var testSaveDraft = document.createElement("button");
-        testSaveDraft.innerText = "Save as draft";
-        testSaveDraft.className += " action-button";
-        testSaveDraft.id = "test-save-draft";
-        testSubmit.addEventListener("click", function() {
-            // "save as draft" test IMPL
-        });
-
-    allButtons.appendChild(testSubmit);
-    allButtons.appendChild(testCancel);
-    allButtons.appendChild(testSaveDraft);
+    var testSaveDraft = document.getElementById("test-save-draft");
+    testSubmit.addEventListener("click", function() {
+        // "save as draft" test IMPL
+    });
 }
 
 

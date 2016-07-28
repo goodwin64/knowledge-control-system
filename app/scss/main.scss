@@ -18,16 +18,19 @@ $color-links: #0db7b7;
     background-size: $bg-size;
 }
 
+// ------------------------------ globals
+$main-elements-height: 75px;
+
 // ------------------------------ page structure (#page-wrap)
 header {
     @extend .page-wrapper;
-	$header-elem-height: 75px;
 
     h1 {
         border: 2px solid #000;
-	    padding-left: 5%;
-	    height: $header-elem-height;
-	    line-height: $header-elem-height;
+	    text-align: center;
+	    height: $main-elements-height;
+	    line-height: $main-elements-height;
+	    font-size: $main-elements-height / 2;
 
 	    span {
 		    color: #f88;
@@ -45,9 +48,8 @@ header {
 			overflow: hidden;
 
 			li {
-				overflow: hidden;
+				//overflow: hidden;
 				float: left;
-				border-right: $li-delimiter;
 
 				&:nth-last-child(2) {
 					border-right: none;
@@ -59,9 +61,11 @@ header {
 				}
 
 				a {
+					height: $main-elements-height;
+					line-height: $main-elements-height;
+					border-top: $li-delimiter;
+					border-right: $li-delimiter;
 					width: 90%;
-					height: $header-elem-height;
-					line-height: $header-elem-height;
 					padding: 0 5%;
 					display: block;
 					float: left;
@@ -75,7 +79,7 @@ header {
 					display: block;
 					z-index: 1;
 					width: inherit;
-					margin-top: $header-elem-height;
+					margin-top: $main-elements-height;
 				}
 
 				.dropdown-content {
@@ -136,11 +140,3 @@ a {
         background: $color-links;
     }
 }
-
-// W3C recomendations (x2)
-h1 { font-size: 4em; }
-h2 { font-size: 3em; }
-h3 { font-size: 2.34em; }
-h4 { font-size: 2.24em; }
-h5 { font-size: 1.66em; }
-h6 { font-size: 1.5em; }

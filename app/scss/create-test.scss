@@ -1,3 +1,5 @@
+@import "main";
+
 .content {
 	#test-creation-head {
 		h2 {
@@ -5,12 +7,22 @@
 		}
 
 		.questions-number-wrapper {
-			$elements-height: 35px;
+			$elements-height: $main-elements-height / 2;
 			$elements-font-size: 2em;
 			padding: $elements-height / 2;
+			overflow: hidden;
+
+			div:first-child {
+				@extend .col-xs-12, .col-m-4, .col-4;
+				float: left;
+			}
+
+			div:last-child {
+				@extend .col-xs-12, .col-m-8, .col-8;
+				display: inline-block;
+			}
 
 			p {
-				float: left;
 				line-height: $elements-height;
 				font-size: $elements-font-size;
 			}
@@ -41,63 +53,78 @@
 		overflow: hidden;
 
 		.question-wrapper {
-			$question-wrapper-margin: 1%;
-			$question-wrapper-padding: 1%;
-			margin: $question-wrapper-margin;
-			padding: $question-wrapper-padding;
-			width: 33.33% - 2 * ($question-wrapper-margin + $question-wrapper-padding); // from left and right sides
+			@extend .col-xs-12, .col-m-6, .col-4;
 			float: left;
-			position: relative;
-			-webkit-box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
-			-moz-box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
-			box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
 
-			h3 {
-				float: left;
-				max-width: 50%;
-			}
+			.question-content {
+				$question-wrapper-margin: 2%;
+				$question-wrapper-padding: 2%;
+				margin: $question-wrapper-margin;
+				padding: $question-wrapper-padding;
+				position: relative;
+				-webkit-box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
+				-moz-box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
+				box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
 
-			select {
-				right: 1.5%;
-				position: absolute;
-				max-width: 50%;
-			}
-
-			.option-wrapper {
-				&:first-of-type {
-					clear: both;
+				h3 {
+					float: left;
+					max-width: 50%;
 				}
 
-				input:first-of-type {
-					width: 5%;
-					min-width: 20px;
+				select {
+					right: 1.5%;
+					position: absolute;
+					max-width: 50%;
 				}
 
-				input[type="text"] {
-					max-width: 90%;
+				.option-wrapper {
+					&:first-of-type {
+						clear: both;
+					}
+
+					input:first-of-type {
+						width: 5%;
+						min-width: 20px;
+					}
+
+					input[type="text"] {
+						max-width: 90%;
+					}
 				}
 			}
 		}
 	}
 
 	#test-creation-after {
-		#all-buttons-wrapper {
+		.buttons-wrapper {
+			@extend .col-xs-12, .col-m-12, .col-6;
 			margin: auto;
-			width: 60%;
+			overflow: hidden;
 
-			#test-submit {
-				background: #bfb;
-			}
-			#test-cancel {
-				background: #fbb;
-			}
-			#test-save-draft {
-				background: #bbf;
+			&:after {
+				clear: both;
 			}
 
-			.action-button {
-				padding: 5px;
-				width: 33.33%;
+			.button-wrapper {
+				@extend .col-xs-12, .col-m-4, .col-4;
+				float: left;
+				
+				#test-submit {
+					background: #bfb;
+				}
+				#test-cancel {
+					background: #fbb;
+				}
+				#test-save-draft {
+					background: #bbf;
+				}
+
+				.action-button {
+					width: 100%;
+					height: $main-elements-height / 2;
+					line-height: $main-elements-height / 2;
+					font-size: $main-elements-height / 3;
+				}
 			}
 		}
 	}

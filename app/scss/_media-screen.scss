@@ -4,9 +4,13 @@
 
 @media only screen and (max-width: 767px) {
 	// For mobiles:
+	.col-xs-3 {width: 25%;}
+	.col-xs-4 {width: 33.33%;}
+	.col-xs-6 {width: 50%;}
+	.col-xs-12 {width: 100%;}
 }
 
-@media only screen and (min-width: 768px) and (device-pixel-ratio: 1) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
 	// For tablets (768 - 1024):
 	.col-m-1 {width: 8.33%;}
 	.col-m-2 {width: 16.66%;}
@@ -22,7 +26,7 @@
 	.col-m-12 {width: 100%;}
 }
 
-@media only screen and (min-width: 1025px) {
+@media screen and (min-width: 1025px) {
 	// For desktop:
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
