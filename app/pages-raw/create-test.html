@@ -9,28 +9,10 @@
 
 </head>
 <body>
-<div class="col-10 page-wrapper">
-    <header>
-        <h1>Can you pass it?</h1>
-        <nav>
-            <div class="link-wrap">
-                <a href="#">Tests</a>
-            </div>
-            <div class="link-wrap">
-                <a href="#">Subjects</a>
-            </div>
-            <div class="link-wrap">
-                <a href="#">Leaderboard</a>
-            </div>
-            <div class="link-wrap">
-                <a href="#">FAQ</a>
-            </div>
-            <div class="link-wrap">
-                <a href="#">About</a>
-            </div>
-        </nav>
-    </header>
 
+@@include('./partials/header.html')
+
+<div class="col-10 page-wrapper">
     <div class="content">
         <div id="test-creation-head">
             <h1>Create your own test</h1>
@@ -48,15 +30,7 @@
     </div>
 </div>
 
-<footer class="col-10">
-    <details>
-        <summary>Copyright</summary>
-        <p>
-            Max Donchenko, Kyiv, 2016
-        </p>
-        <a href="mailto:wereya2@gmail.com">Write me</a>
-    </details>
-</footer>
+@@include('./partials/footer.html')
 
 <script>
     onload();

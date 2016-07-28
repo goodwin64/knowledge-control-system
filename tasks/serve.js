@@ -6,7 +6,7 @@ const webserver = require('gulp-webserver');
 module.exports = function(options) {
 
     return function () {
-        gulp.src('app')
+        gulp.src(options.src)
             .pipe(webserver({
                 livereload: true,
                 // directoryListing: true,

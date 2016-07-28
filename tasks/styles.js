@@ -11,9 +11,9 @@ module.exports = function(options) {
         return combine(
             gulp.src(options.src),
             $.if(isDevelopment, $.sourcemaps.init()),
-            $.sass(),
+            $.sass({outputStyle: 'compressed'}),
             $.if(isDevelopment, $.sourcemaps.write()),
-            gulp.dest('./app/css/')
+            gulp.dest('./public/css/')
         );
     };
 };

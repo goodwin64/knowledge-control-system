@@ -31,8 +31,8 @@ function generateQuestionsDiv(indexQuestion) {
         questionDiv.appendChild(questionTypeSelect);
 
     // options (inside base)
-    let TEST_OPTIONS_COUNT = 3; // on the development
-    for (let indexOption = 1; indexOption <= TEST_OPTIONS_COUNT; indexOption++) {
+    const TEST_OPTIONS_COUNT = 3; // on the development
+    for (var indexOption = 1; indexOption <= TEST_OPTIONS_COUNT; indexOption++) {
         var optionWrapper = generateOptionsDiv(indexQuestion, indexOption);
         questionDiv.appendChild(optionWrapper);
     }
@@ -71,7 +71,7 @@ function generateOptionsDiv(indexQuestion, indexOption) {
  */
 function generateQuestionTypeSelector(questionTypes) {
     var questionTypeSelect = document.createElement("select");
-    for (let i = 0; i < questionTypes.length; i++) {
+    for (var i = 0; i < questionTypes.length; i++) {
         var type = document.createElement("option");
         type.innerText = questionTypes[i];
         questionTypeSelect.appendChild(type);
@@ -98,7 +98,7 @@ function generateQuestionTypeSelector(questionTypes) {
 function setOptionsTo(selectNode, childrenOptionsType) {
     var siblingOptions = selectNode.parentNode.childNodes;
     if (siblingOptions && siblingOptions[0].getAttribute("type") != childrenOptionsType) {
-        for (let i = 0; i < siblingOptions.length; i++) {
+        for (var i = 0; i < siblingOptions.length; i++) {
             if (siblingOptions[i].className.indexOf("option-wrapper") != -1) {
                 siblingOptions[i].querySelector("input").setAttribute("type", childrenOptionsType);
             }
@@ -159,11 +159,11 @@ function onSubmitQuestionsNumber() {
 
     // add / delete questions
     if (newQuestionsNumber > oldQuestionNumber) {
-        for (let i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
+        for (var i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
             testBody.appendChild(generateQuestionsDiv(i));
         }
     } else {
-        for (let i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
+        for (i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
             testBody.removeChild(testBody.lastElementChild);
         }
     }

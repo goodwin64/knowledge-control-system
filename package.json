@@ -45,6 +45,9 @@
     "gulp-connect": "~4.2.0",
     "stream-combiner2": "~1.1.1",
     "gulp-webserver": "~0.9.1",
-    "through2": "~2.0.1"
+    "through2": "~2.0.1",
+    "gulp-file-include": "~0.13.7",
+    "imagemin": "~5.2.2",
+    "pump": "~1.0.1"
   }
 }
