@@ -12,7 +12,8 @@ function lazyRequireTask(taskName, path, options) {
 }
 
 lazyRequireTask('styles', './tasks/styles', {
-    src: 'app/scss/*.scss'
+    src: 'app/scss/*.scss',
+    outputStyle: 'compressed'
 });
 
 // delete "dst" dir (usually before building)
@@ -47,8 +48,7 @@ lazyRequireTask('compress:js', './tasks/compress:js', {
 
 // webserver + live reload
 lazyRequireTask('serve', './tasks/serve', {
-    src: 'public',
-    fallback: 'pages-built/index.html'
+    src: 'public'
 });
 
 gulp.task('build', gulp.series('styles', 'html:build', 'compress:js'));

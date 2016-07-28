@@ -11,7 +11,7 @@ module.exports = function(options) {
         return combine(
             gulp.src(options.src),
             $.if(isDevelopment, $.sourcemaps.init()),
-            $.sass({outputStyle: 'compressed'}),
+            $.sass({outputStyle: options.outputStyle}),
             $.if(isDevelopment, $.sourcemaps.write()),
             gulp.dest('./public/css/')
         );

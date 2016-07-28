@@ -12,44 +12,89 @@ $color-links: #0db7b7;
 
 // ------------------------------ mixins
 @mixin background-size($bg-size) {
-	-webkit-background-size: $bg-size;
-	-moz-background-size: $bg-size;
-	-o-background-size: $bg-size;
-	background-size: $bg-size;
+    -webkit-background-size: $bg-size;
+    -moz-background-size: $bg-size;
+    -o-background-size: $bg-size;
+    background-size: $bg-size;
 }
 
 // ------------------------------ page structure (#page-wrap)
 header {
-	@extend .page-wrapper;
-	
-	h1 {
-		border: 2px solid #000;
-		text-align: center;
-		font-size: 48px;
-	}
+    @extend .page-wrapper;
+
+    h1 {
+        border: 2px solid #000;
+        text-align: center;
+        font-size: 48px;
+    }
 }
 
 nav {
-	border: 2px solid #000;
-	border-top: 0;
 	$links-count: 5;
-	overflow: hidden;
+    border: 2px solid #000;
+    border-top: 0;
+    overflow: hidden;
 
-	.link-wrap {
-		float: left;
-		width: 100% / $links-count;
-		height: 50px;
-		line-height: 50px;
-		text-align: center;
+    ul {
+        $li-delimiter: 1px solid #000;
+        list-style-type: none;
+	    overflow: hidden;
 
-		a {
-			font-size: x-large;
-		}
-	}
+        li {
+            overflow: hidden;
+            float: left;
+	        $li-width: 70% / $links-count;
+            width: $li-width;
+            border-right: $li-delimiter;
+
+            &:nth-last-child(2) {
+                border-right: none;
+            }
+
+            &:last-child {
+                float: right;
+                border-right: none;
+	            width: $li-width * 2;
+
+	            a {
+		            width: 50% - 2 * 5%;
+	            }
+            }
+
+            a {
+	            width: 90%;
+	            margin: auto;
+	            padding: 12px 5% 12px 5%;
+                display: block;
+                float: left;
+                text-align: center;
+                font-size: x-large;
+            }
+        }
+
+	    .dropdown {
+		    &:hover .dropdown-content {
+			    display: block;
+			    z-index: 1;
+			    width: inherit;
+		    }
+
+		    .dropdown-content {
+			    display: none;
+			    position: absolute;
+			    background-color: #f9f9f9;
+			    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+			    a {
+				    text-align: left;
+			    }
+		    }
+	    }
+    }
 }
 
 .content {
-
+	padding: 5px;
 }
 
 .sidebar {
@@ -59,32 +104,35 @@ nav {
 footer {
     @extend .page-wrapper;
 
-	summary {
-		outline: none;
-	}
+    details {
+	    padding: 5px;
+
+	    summary {
+		    outline: none;
+	    }
+    }
 }
 
 // ------------------------------ partial cases
 body {
-	background: $main-bg-image-alt-color url($path-to-root-dir + $main-bg-image) no-repeat center center fixed;
-	@include background-size(cover); // !!! after background-property !!!
+    background: $main-bg-image-alt-color url($path-to-root-dir + $main-bg-image) no-repeat center center fixed;
+    @include background-size(cover); // !!! after background-property !!!
 }
 
 .page-wrapper {
-	// sizes and position
-	margin: 0 auto;
-	overflow: hidden;
-	position: relative;
-	// styles and color design
-	background: rgba(250, 250, 250, 0.95);
+    // sizes and position
+    margin: 0 auto;
+    position: relative;
+    // styles and color design
+    background: rgba(250, 250, 250, 0.95);
 }
 
 a {
-	color: $color-links;
-	text-decoration: none;
+    color: $color-links;
+    text-decoration: none;
 
-	&:hover {
-		color: #fefefe;
-		background: $color-links;
-	}
+    &:hover {
+        color: #fefefe;
+        background: $color-links;
+    }
 }
