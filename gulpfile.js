@@ -48,7 +48,7 @@ lazyRequireTask('compress:js', './tasks/compress:js', {
 
 // webserver + live reload
 lazyRequireTask('serve', './tasks/serve', {
-    src: 'public'
+    src: './'
 });
 
 gulp.task('build', gulp.series('styles', 'html:build', 'compress:js'));
