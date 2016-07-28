@@ -21,7 +21,7 @@ $color-links: #0db7b7;
 // ------------------------------ page structure (#page-wrap)
 header {
     @extend .page-wrapper;
-	$header-elem-height: 50px;
+	$header-elem-height: 75px;
 
     h1 {
         border: 2px solid #000;
@@ -66,7 +66,7 @@ header {
 					display: block;
 					float: left;
 					text-align: center;
-					font-size: x-large;
+					font-size: 2em;
 				}
 			}
 
@@ -137,10 +137,10 @@ a {
     }
 }
 
-// W3C recomendations
-h1 { font-size: 2em; }
-h2 { font-size: 1.5em; }
-h3 { font-size: 1.17em; }
-h4 { font-size: 1.12em; }
-h5 { font-size: .83em; }
-h6 { font-size: .75em; }
+// W3C recomendations (x2)
+h1 { font-size: 4em; }
+h2 { font-size: 3em; }
+h3 { font-size: 2.34em; }
+h4 { font-size: 2.24em; }
+h5 { font-size: 1.66em; }
+h6 { font-size: 1.5em; }
