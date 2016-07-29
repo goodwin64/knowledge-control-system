@@ -1,5 +1,7 @@
 @import "main";
 
+$both-input-button-borders: 2px;
+
 .content {
 	#test-creation-head {
 		h2 {
@@ -26,8 +28,6 @@
 				line-height: $elements-height;
 				font-size: $elements-font-size;
 			}
-
-			$both-input-button-borders: 2px;
 
 			// height = box-height + border-top + border-bottom
 			input[type="number"] {
@@ -59,6 +59,9 @@
 			.question-content {
 				$question-wrapper-margin: 2%;
 				$question-wrapper-padding: 2%;
+				$option-select-size: 18px;
+				$buttons-size: 1.25 * $option-select-size;
+
 				margin: $question-wrapper-margin;
 				padding: $question-wrapper-padding;
 				position: relative;
@@ -67,35 +70,69 @@
 				box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
 
 				h3 {
-					float: left;
 					max-width: 50%;
+					font-size: 1.5 * $option-select-size;
 				}
 
 				select {
+					top: 5%;
 					right: 1.5%;
 					position: absolute;
 					max-width: 50%;
 				}
 
-				.option-wrapper {
-					&:first-of-type {
-						clear: both;
+				.question-title-wrapper {
+					input {
+						width: 80%;
+						margin-left: $option-select-size;
+						font-size: $buttons-size;
+						padding-left: 0.5 * $option-select-size;
 					}
+				}
 
-					input:first-of-type {
-						width: 5%;
-						min-width: 20px;
-					}
+				.options-wrapper {
+					.option-wrapper {
+						margin: 2px 0;
 
-					input[type="text"] {
-						max-width: 90%;
+						&:first-of-type {
+							clear: both;
+						}
+
+						input, button {
+							vertical-align: middle;
+						}
+
+						input.option-select {
+							height: $option-select-size;
+							width: $option-select-size;
+						}
+
+						input.option-content {
+							height: $buttons-size - 2 * $both-input-button-borders;
+							width: 80%;
+							padding-left: 0.5 * $option-select-size;
+						}
+
+						button.option-delete {
+							height: $buttons-size;
+							width: $buttons-size;
+							color: #bb0000;
+						}
 					}
+				}
+
+				button.option-add {
+					height: $buttons-size;
+					width: $buttons-size * 3;
+					margin-left: $option-select-size;
+					color: #0b0;
 				}
 			}
 		}
 	}
 
 	#test-creation-after {
+		margin: 10px 0;
 		.buttons-wrapper {
 			@extend .col-xs-12, .col-m-12, .col-6;
 			margin: auto;

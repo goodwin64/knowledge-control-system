@@ -25,21 +25,45 @@ function generateQuestionsDiv(indexQuestion) {
     var questionContent = document.createElement("div");
         questionContent.className += " question-content";
 
+    // question head (header + select)
+    var questionHeadWrapper = document.createElement("div");
+        questionHeadWrapper.className += " question-head-wrapper";
+
     // question header
     var questionHeader = document.createElement("h3");
         questionHeader.innerText = "Question №" + indexQuestion;
-        questionContent.appendChild(questionHeader);
+        questionHeadWrapper.appendChild(questionHeader);
 
-    // question type select (list)
+    // question type list (select)
     var questionTypeSelect = generateQuestionTypeSelector(["one-option", "multi-option"]);
-        questionContent.appendChild(questionTypeSelect);
+        questionHeadWrapper.appendChild(questionTypeSelect);
+
+    questionContent.appendChild(questionHeadWrapper);
+
+    // question title
+    var questionTitleWrapper = generateQuestionTitle("Question title");
+        questionContent.appendChild(questionTitleWrapper);
+
+    // options wrapper
+    var optionsWrapper = document.createElement("div");
+        optionsWrapper.className += " options-wrapper";
 
     // options (inside base)
     const TEST_OPTIONS_COUNT = 3; // on the development
     for (var indexOption = 1; indexOption <= TEST_OPTIONS_COUNT; indexOption++) {
         var optionWrapper = generateOptionsDiv(indexQuestion, indexOption);
-        questionContent.appendChild(optionWrapper);
+        optionsWrapper.appendChild(optionWrapper);
     }
+    questionContent.appendChild(optionsWrapper);
+
+    // "add new option" button
+    var optionAddWrapper = document.createElement("div");
+        optionAddWrapper.className += " option-add-wrapper";
+    var optionAdd = document.createElement("button");
+        optionAdd.innerText = "+";
+        optionAdd.className += " option-add";
+        optionAddWrapper.appendChild(optionAdd);
+        questionContent.appendChild(optionAddWrapper);
 
     questionWrapper.appendChild(questionContent);
     return questionWrapper;
@@ -48,20 +72,28 @@ function generateQuestionsDiv(indexQuestion) {
 
 function generateOptionsDiv(indexQuestion, indexOption) {
     // option radio-button
-    var optionButton = document.createElement("input");
-        optionButton.setAttribute("type", "radio");
-        optionButton.name = "option-button-" + indexQuestion;
-        optionButton.id = optionButton.name + "-" + indexOption;
+    var optionSelect = document.createElement("input");
+        optionSelect.setAttribute("type", "radio");
+        optionSelect.name = "option-button-" + indexQuestion;
+        optionSelect.id = optionSelect.name + "-" + indexOption;
+        optionSelect.className += " option-select";
 
     // option text
     var optionContent = document.createElement("input");
         optionContent.setAttribute("type", "text");
         optionContent.setAttribute("placeholder", "e.g. option " + indexOption);
+        optionContent.className += " option-content";
+
+    // "delete option" button
+    var optionDelete = document.createElement("button");
+        optionDelete.innerText = "x";
+        optionDelete.className += " option-delete";
 
     var optionWrapper = document.createElement("div");
         optionWrapper.className += " option-wrapper";
-        optionWrapper.appendChild(optionButton);
+        optionWrapper.appendChild(optionSelect);
         optionWrapper.appendChild(optionContent);
+        optionWrapper.appendChild(optionDelete);
 
     return optionWrapper;
 }
@@ -87,7 +119,7 @@ function generateQuestionTypeSelector(questionTypes) {
                 setOptionsTo(this, "radio");
                 break;
             case "multi-option":
-                setOptionsTo(this, "checkbox");
+                setOptionsTo(this, "checkbox"); // FIXME: change listener after last wrapping actions
                 break;
         }
     };
@@ -124,12 +156,12 @@ function fillTestFooter() {
     });
 
     var testCancel = document.getElementById("test-cancel");
-    testSubmit.addEventListener("click", function() {
+    testCancel.addEventListener("click", function() {
         // "cancel" test IMPL
     });
 
     var testSaveDraft = document.getElementById("test-save-draft");
-    testSubmit.addEventListener("click", function() {
+    testSaveDraft.addEventListener("click", function() {
         // "save as draft" test IMPL
     });
 }
@@ -161,4 +193,17 @@ function onSubmitQuestionsNumber() {
     // show buttons
     var toShow = document.getElementById("test-creation-after");
         toShow.removeAttribute("hidden");
+}
+
+
+function generateQuestionTitle(placeholder) {
+    var questionTitle = document.createElement("input");
+        questionTitle.setAttribute("type", "text");
+        questionTitle.setAttribute("placeholder", placeholder || "Question title");
+
+    var questionTitleWrapper = document.createElement("div");
+        questionTitleWrapper.className += " question-title-wrapper";
+        questionTitleWrapper.appendChild(questionTitle);
+
+    return questionTitleWrapper;
 }
