@@ -1,5 +1,6 @@
 'use strict';
 
+const isDevelop = true; // false on "production"
 const gulp = require('gulp');
 
 function lazyRequireTask(taskName, path, options) {
@@ -13,7 +14,8 @@ function lazyRequireTask(taskName, path, options) {
 
 lazyRequireTask('styles', './tasks/styles', {
     src: 'app/scss/*.scss',
-    outputStyle: 'compressed'
+    outputStyle: (isDevelop ? 'full' : 'compressed'),
+    isDevelop: isDevelop
 });
 
 // delete "dst" dir (usually before building)
@@ -40,15 +42,18 @@ lazyRequireTask('compress:images', './tasks/compress:images', {
     dst: 'public/images/'
 });
 
-// uglify
+// uglify, for production
 lazyRequireTask('compress:js', './tasks/compress:js', {
     src: 'app/js/*.js',
-    dst: 'public/js/'
+    dst: 'public/js/',
+    mangle: !isDevelop,
+    compress: !isDevelop,
+    output: { beautify: isDevelop }
 });
 
 // webserver + live reload
 lazyRequireTask('serve', './tasks/serve', {
-    src: './'
+    src: 'public/'
 });
 
 gulp.task('build', gulp.series('styles', 'html:build', 'compress:js'));

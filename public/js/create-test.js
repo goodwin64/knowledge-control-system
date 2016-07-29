@@ -1,1 +1,172 @@
-function onload(){var e=document.getElementById("submit-questions-number"),t=document.getElementById("questions-number");e.addEventListener("click",onSubmitQuestionsNumber),t.addEventListener("keyup",function(e){e.preventDefault(),13==e.keyCode&&document.getElementById("submit-questions-number").click()}),fillTestFooter()}function generateQuestionsDiv(e){var t=document.createElement("div");t.className+=" question-wrapper";var n=document.createElement("div");n.className+=" question-content";var i=document.createElement("div");i.className+=" question-head-wrapper";var o=document.createElement("h3");o.innerText="Question №"+e,i.appendChild(o);var a=generateQuestionTypeSelector(["one-option","multi-option"]);i.appendChild(a),n.appendChild(i);var r=generateQuestionTitle("Question title");n.appendChild(r);var d=document.createElement("div");d.className+=" options-wrapper";const c=3;for(var s=1;s<=c;s++){var u=generateOptionsDiv(e,s);d.appendChild(u)}n.appendChild(d);var l=document.createElement("div");l.className+=" option-add-wrapper";var m=document.createElement("button");return m.innerText="+",m.className+=" option-add",l.appendChild(m),n.appendChild(l),t.appendChild(n),t}function generateOptionsDiv(e,t){var n=document.createElement("input");n.setAttribute("type","radio"),n.name="option-button-"+e,n.id=n.name+"-"+t,n.className+=" option-select";var i=document.createElement("input");i.setAttribute("type","text"),i.setAttribute("placeholder","e.g. option "+t),i.className+=" option-content";var o=document.createElement("button");o.innerText="x",o.className+=" option-delete";var a=document.createElement("div");return a.className+=" option-wrapper",a.appendChild(n),a.appendChild(i),a.appendChild(o),a}function generateQuestionTypeSelector(e){for(var t=document.createElement("select"),n=0;n<e.length;n++){var i=document.createElement("option");i.innerText=e[n],t.appendChild(i)}return t.onchange=function(){switch(this.value){case"one-option":setOptionsTo(this,"radio");break;case"multi-option":setOptionsTo(this,"checkbox")}},t}function setOptionsTo(e,t){var n=e.parentNode.childNodes;if(n&&n[0].getAttribute("type")!=t)for(var i=0;i<n.length;i++)n[i].className.indexOf("option-wrapper")!=-1&&n[i].querySelector("input").setAttribute("type",t)}function fillTestFooter(){var e=document.getElementById("test-submit");e.addEventListener("click",function(){});var t=document.getElementById("test-cancel");t.addEventListener("click",function(){});var n=document.getElementById("test-save-draft");n.addEventListener("click",function(){})}function onSubmitQuestionsNumber(){var e=document.getElementById("test-creation-body"),t=document.getElementById("questions-number"),n=e.childElementCount,i=+t.value;if(!(i<+t.min||i>+t.max)){if(i>n)for(var o=n+1;o<=i;o++)e.appendChild(generateQuestionsDiv(o));else for(o=0;o<n-i;o++)e.removeChild(e.lastElementChild);var a=document.getElementById("test-creation-after");a.removeAttribute("hidden")}}function generateQuestionTitle(e){var t=document.createElement("input");t.setAttribute("type","text"),t.setAttribute("placeholder",e||"Question title");var n=document.createElement("div");return n.className+=" question-title-wrapper",n.appendChild(t),n}
+function onload() {
+    var submitQuestionsNumber = document.getElementById("submit-questions-number");
+    var inputQuestionsNumber = document.getElementById("questions-number");
+    submitQuestionsNumber.addEventListener("click", onSubmitQuestionsNumber);
+    inputQuestionsNumber.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+            document.getElementById("submit-questions-number").click();
+        }
+    });
+    fillTestFooter();
+}
+
+function generateQuestionsDiv(indexQuestion) {
+    var questionWrapper = document.createElement("div");
+    questionWrapper.className += " question-wrapper";
+    var questionContent = document.createElement("div");
+    questionContent.className += " question-content";
+    var questionHeadWrapper = document.createElement("div");
+    questionHeadWrapper.className += " question-head-wrapper";
+    var questionHeader = document.createElement("h3");
+    questionHeader.innerText = "Question №" + indexQuestion;
+    questionHeadWrapper.appendChild(questionHeader);
+    var questionTypeSelect = generateQuestionTypeSelector([ "one-option", "multi-option" ]);
+    questionHeadWrapper.appendChild(questionTypeSelect);
+    questionContent.appendChild(questionHeadWrapper);
+    var questionTitleWrapper = generateQuestionTitle("Question title");
+    questionContent.appendChild(questionTitleWrapper);
+    var optionsWrapper = document.createElement("div");
+    optionsWrapper.className += " options-wrapper";
+    const TEST_OPTIONS_COUNT = 3;
+    const MAX_OPTIONS_COUNT = 10;
+    for (var indexOption = 1; indexOption <= TEST_OPTIONS_COUNT; indexOption++) {
+        var optionWrapper = generateOptionDiv(indexQuestion, indexOption);
+        optionsWrapper.appendChild(optionWrapper);
+    }
+    questionContent.appendChild(optionsWrapper);
+    var optionAddWrapper = document.createElement("div");
+    optionAddWrapper.className += " option-add-wrapper";
+    var optionAdd = document.createElement("button");
+    optionAdd.innerText = "+";
+    optionAdd.className += " option-add";
+    optionAddWrapper.appendChild(optionAdd);
+    questionContent.appendChild(optionAddWrapper);
+    optionAdd.addEventListener("click", function() {
+        if (optionsWrapper.childElementCount < MAX_OPTIONS_COUNT) {
+            var nodeList = Array.prototype.slice.call(questionWrapper.parentNode.children);
+            var indexQuestion = nodeList.indexOf(questionWrapper) + 1;
+            var indexOption = optionAdd.parentNode.previousElementSibling.children.length + 1;
+            optionsWrapper.appendChild(generateOptionDiv(indexQuestion, indexOption, getInputTypeFromSelect(questionTypeSelect.value)));
+        } else {
+            alert("Too many options, max " + MAX_OPTIONS_COUNT);
+        }
+    });
+    questionWrapper.appendChild(questionContent);
+    return questionWrapper;
+}
+
+function generateOptionDiv(indexQuestion, indexOption, optionSelectType) {
+    optionSelectType = optionSelectType || "radio";
+    var optionWrapper = document.createElement("div");
+    optionWrapper.className += " option-wrapper";
+    var optionSelect = document.createElement("input");
+    optionSelect.setAttribute("type", optionSelectType);
+    optionSelect.name = "option-button-" + indexQuestion;
+    optionSelect.className += " option-select";
+    var optionContent = document.createElement("input");
+    optionContent.setAttribute("type", "text");
+    optionContent.setAttribute("placeholder", "e.g. option " + indexOption);
+    optionContent.className += " option-content";
+    var optionDelete = document.createElement("button");
+    optionDelete.innerText = "x";
+    optionDelete.className += " option-delete";
+    optionDelete.addEventListener("click", function() {
+        var optionsWrapper = optionWrapper.parentNode;
+        if (optionsWrapper.children.length > 1) {
+            optionsWrapper.removeChild(optionWrapper);
+            rewriteChildrenPlaceholders(optionsWrapper, "e.g. option ");
+        } else {
+            alert("At least 1 option");
+        }
+    });
+    optionWrapper.appendChild(optionSelect);
+    optionWrapper.appendChild(optionContent);
+    optionWrapper.appendChild(optionDelete);
+    return optionWrapper;
+}
+
+function generateQuestionTypeSelector(questionTypes) {
+    var questionTypeSelect = document.createElement("select");
+    for (var i = 0; i < questionTypes.length; i++) {
+        var type = document.createElement("option");
+        type.innerText = questionTypes[i];
+        questionTypeSelect.appendChild(type);
+    }
+    questionTypeSelect.onchange = function() {
+        setOptionsTo(this, getInputTypeFromSelect(this.value));
+    };
+    return questionTypeSelect;
+}
+
+function setOptionsTo(selectNode, childrenOptionsType) {
+    var siblingOptions = selectNode.parentNode.parentNode.querySelector(".options-wrapper").children;
+    if (siblingOptions && siblingOptions[0].getAttribute("type") != childrenOptionsType) {
+        for (var i = 0; i < siblingOptions.length; i++) {
+            if (siblingOptions[i].className.indexOf("option-wrapper") != -1) {
+                siblingOptions[i].querySelector("input").setAttribute("type", childrenOptionsType);
+            }
+        }
+    }
+}
+
+function fillTestFooter() {
+    var testSubmit = document.getElementById("test-submit");
+    testSubmit.addEventListener("click", function() {});
+    var testCancel = document.getElementById("test-cancel");
+    testCancel.addEventListener("click", function() {});
+    var testSaveDraft = document.getElementById("test-save-draft");
+    testSaveDraft.addEventListener("click", function() {});
+}
+
+function onSubmitQuestionsNumber() {
+    var testBody = document.getElementById("test-creation-body");
+    var inputQuestionsNumber = document.getElementById("questions-number");
+    var oldQuestionNumber = testBody.childElementCount;
+    var newQuestionsNumber = +inputQuestionsNumber.value;
+    if (newQuestionsNumber < +inputQuestionsNumber.min || newQuestionsNumber > +inputQuestionsNumber.max) {
+        return;
+    }
+    if (newQuestionsNumber > oldQuestionNumber) {
+        for (var i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
+            testBody.appendChild(generateQuestionsDiv(i));
+        }
+    } else {
+        for (i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
+            testBody.removeChild(testBody.lastElementChild);
+        }
+    }
+    var toShow = document.getElementById("test-creation-after");
+    toShow.removeAttribute("hidden");
+}
+
+function generateQuestionTitle(placeholder) {
+    var questionTitle = document.createElement("input");
+    questionTitle.setAttribute("type", "text");
+    questionTitle.setAttribute("placeholder", placeholder || "Question title");
+    var questionTitleWrapper = document.createElement("div");
+    questionTitleWrapper.className += " question-title-wrapper";
+    questionTitleWrapper.appendChild(questionTitle);
+    return questionTitleWrapper;
+}
+
+function rewriteChildrenPlaceholders(node, placeholderPrefix) {
+    placeholderPrefix = placeholderPrefix || "e.g. option ";
+    for (var i = 1; i <= node.children.length; i++) {
+        var optionInput = node.children[i - 1].querySelector("input[type='text']");
+        optionInput.setAttribute("placeholder", placeholderPrefix + i);
+    }
+}
+
+function getInputTypeFromSelect(inputValue) {
+    switch (inputValue) {
+      case "one-option":
+        return "radio";
+
+      case "multi-option":
+        return "checkbox";
+
+      default:
+        return null;
+    }
+}

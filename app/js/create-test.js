@@ -50,8 +50,9 @@ function generateQuestionsDiv(indexQuestion) {
 
     // options (inside base)
     const TEST_OPTIONS_COUNT = 3; // on the development
+    const MAX_OPTIONS_COUNT = 10;
     for (var indexOption = 1; indexOption <= TEST_OPTIONS_COUNT; indexOption++) {
-        var optionWrapper = generateOptionsDiv(indexQuestion, indexOption);
+        var optionWrapper = generateOptionDiv(indexQuestion, indexOption);
         optionsWrapper.appendChild(optionWrapper);
     }
     questionContent.appendChild(optionsWrapper);
@@ -64,18 +65,34 @@ function generateQuestionsDiv(indexQuestion) {
         optionAdd.className += " option-add";
         optionAddWrapper.appendChild(optionAdd);
         questionContent.appendChild(optionAddWrapper);
+        optionAdd.addEventListener('click', function() {
+            if (optionsWrapper.childElementCount < MAX_OPTIONS_COUNT) {
+                // find out current question index via pure JS (.index in jQuery)
+                var nodeList = Array.prototype.slice.call(questionWrapper.parentNode.children);
+                var indexQuestion = nodeList.indexOf(questionWrapper) + 1;
+                var indexOption = optionAdd.parentNode.previousElementSibling.children.length + 1; // starts from 1, not 0
+                optionsWrapper.appendChild(
+                    generateOptionDiv(indexQuestion, indexOption, getInputTypeFromSelect(questionTypeSelect.value))
+                );
+            } else {
+                alert("Too many options, max " + MAX_OPTIONS_COUNT);
+            }
+        });
 
     questionWrapper.appendChild(questionContent);
     return questionWrapper;
 }
 
 
-function generateOptionsDiv(indexQuestion, indexOption) {
+function generateOptionDiv(indexQuestion, indexOption, optionSelectType) {
+    optionSelectType = optionSelectType || "radio";
+    var optionWrapper = document.createElement("div");
+        optionWrapper.className += " option-wrapper";
+
     // option radio-button
     var optionSelect = document.createElement("input");
-        optionSelect.setAttribute("type", "radio");
+        optionSelect.setAttribute("type", optionSelectType);
         optionSelect.name = "option-button-" + indexQuestion;
-        optionSelect.id = optionSelect.name + "-" + indexOption;
         optionSelect.className += " option-select";
 
     // option text
@@ -88,12 +105,19 @@ function generateOptionsDiv(indexQuestion, indexOption) {
     var optionDelete = document.createElement("button");
         optionDelete.innerText = "x";
         optionDelete.className += " option-delete";
+        optionDelete.addEventListener('click', function() {
+            var optionsWrapper = optionWrapper.parentNode;
+            if (optionsWrapper.children.length > 1) {
+                optionsWrapper.removeChild(optionWrapper);
+                rewriteChildrenPlaceholders(optionsWrapper, "e.g. option ");
+            } else {
+                alert("At least 1 option");
+            }
+        });
 
-    var optionWrapper = document.createElement("div");
-        optionWrapper.className += " option-wrapper";
-        optionWrapper.appendChild(optionSelect);
-        optionWrapper.appendChild(optionContent);
-        optionWrapper.appendChild(optionDelete);
+    optionWrapper.appendChild(optionSelect);
+    optionWrapper.appendChild(optionContent);
+    optionWrapper.appendChild(optionDelete);
 
     return optionWrapper;
 }
@@ -114,14 +138,7 @@ function generateQuestionTypeSelector(questionTypes) {
         questionTypeSelect.appendChild(type);
     }
     questionTypeSelect.onchange = function () {
-        switch (this.value) {
-            case "one-option":
-                setOptionsTo(this, "radio");
-                break;
-            case "multi-option":
-                setOptionsTo(this, "checkbox"); // FIXME: change listener after last wrapping actions
-                break;
-        }
+        setOptionsTo(this, getInputTypeFromSelect(this.value));
     };
     return questionTypeSelect;
 }
@@ -133,7 +150,7 @@ function generateQuestionTypeSelector(questionTypes) {
  * @param childrenOptionsType   new type of "input" siblings (e.g. one-/multi-option/text/matches)
  */
 function setOptionsTo(selectNode, childrenOptionsType) {
-    var siblingOptions = selectNode.parentNode.childNodes;
+    var siblingOptions = selectNode.parentNode.parentNode.querySelector(".options-wrapper").children;
     if (siblingOptions && siblingOptions[0].getAttribute("type") != childrenOptionsType) {
         for (var i = 0; i < siblingOptions.length; i++) {
             if (siblingOptions[i].className.indexOf("option-wrapper") != -1) {
@@ -206,4 +223,25 @@ function generateQuestionTitle(placeholder) {
         questionTitleWrapper.appendChild(questionTitle);
 
     return questionTitleWrapper;
+}
+
+
+function rewriteChildrenPlaceholders(node, placeholderPrefix) {
+    placeholderPrefix = placeholderPrefix || "e.g. option ";
+    for (var i = 1; i <= node.children.length; i++) {
+        var optionInput = node.children[i-1].querySelector("input[type='text']");
+        optionInput.setAttribute("placeholder", placeholderPrefix + i);
+    }
+}
+
+
+function getInputTypeFromSelect(inputValue) {
+    switch (inputValue) {
+        case "one-option":
+            return "radio";
+        case "multi-option":
+            return "checkbox";
+        default:
+            return null;
+    }
 }

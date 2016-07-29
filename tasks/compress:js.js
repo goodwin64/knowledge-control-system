@@ -6,7 +6,11 @@ module.exports = function(options) {
     return function(cb) {
         return pump([
                 gulp.src(options.src),
-                uglify(),
+                uglify({
+                    mangle: options.mangle,
+                    compress: options.compress,
+                    output: options.output
+                }),
                 gulp.dest(options.dst)
             ], cb
         );

@@ -31,7 +31,7 @@ header {
 	    text-align: center;
 	    height: $main-elements-height;
 	    line-height: $main-elements-height;
-	    font-size: $main-elements-height / 2;
+	    font-size: round($main-elements-height / 2);
 
 	    span {
 		    color: #f88;
