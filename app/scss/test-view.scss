@@ -1,0 +1,15 @@
+.test-wrapper {
+	.test-params {
+		h3 {
+			color: #f88;
+		}
+	}
+
+	.test-content {
+		@import "question-view";
+	}
+
+	.test-after {
+
+	}
+}

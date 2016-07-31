@@ -1,0 +1,40 @@
+doctype html
+html
+    head
+        title My Site
+        include ../partials/meta.html
+        link(href='../css/all-pages-common.css', rel='stylesheet')
+        link(href='../css/test-view.css', rel='stylesheet')
+    body
+        include ../partials/header.html
+        .page-wrapper
+            .test-wrapper
+                .test-params
+                    p Title:
+                    h3= title
+                    p Duration:
+                    h3= duration
+                    p Complexity:
+                    h3= complexity
+                .test-content
+                    .questions-wrapper
+                        each question, questionIndex in questions
+                            .question-wrapper.col-xs-12.col-m-6.col-4
+                                .question-content
+                                    case question["type"]
+                                        when 1
+                                            - var selector = "radio"
+                                        when 2
+                                            - var selector = "checkbox"
+                                        default
+                                            - var selector = null
+                                    h3= "Question " + (questionIndex+1)
+                                    h4= question["title"]
+                                    .options-wrapper
+                                        each option, optionIndex in question["options"]
+                                            .option-wrapper
+                                                input(type=selector, id="option-"+questionIndex+"-"+optionIndex, name="option-"+questionIndex)
+                                                label(for="option-"+questionIndex+"-"+optionIndex)= option
+                .test-after
+                    // social sharing
+        include ../partials/footer.html

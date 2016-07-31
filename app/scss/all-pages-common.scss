@@ -1,6 +1,7 @@
 // ------------------------------ imports
-@import "media-screen";
 @import "reset";
+@import "media-screen";
+@import "global-variables";
 
 // ------------------------------ images paths
 $path-to-root-dir: "../";
@@ -19,9 +20,6 @@ $color-links-hover: $main-bg-image-alt-color;
     background-size: $bg-size;
 }
 
-// ------------------------------ globals
-$main-elements-height: 75px;
-
 // ------------------------------ page structure (#page-wrap)
 header {
     @extend .page-wrapper;
@@ -29,8 +27,8 @@ header {
     h1 {
         border: 2px solid #000;
 	    text-align: center;
-	    height: $main-elements-height;
-	    line-height: $main-elements-height;
+	    height: round($main-elements-height * 1.25);
+	    line-height: round($main-elements-height * 1.25);
 	    font-size: round($main-elements-height / 2);
 
 	    span {
@@ -69,7 +67,7 @@ header {
 					display: block;
 					float: left;
 					text-align: center;
-					font-size: 2em;
+					font-size: round($main-elements-height / 2.25);
 				}
 			}
 
@@ -89,6 +87,7 @@ header {
 
 					a {
 						text-align: left;
+						font-size: round($main-elements-height / 2.75);
 					}
 				}
 			}
@@ -126,9 +125,8 @@ body {
     // sizes and position
 	@extend .col-10;
     margin: 0 auto;
-    position: relative;
     // styles and color design
-    background: rgba(250, 250, 250, 0.95);
+    background: rgba(100%, 100%, 100%, 0.95);
 }
 
 a {

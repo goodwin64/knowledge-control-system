@@ -25,7 +25,7 @@ lazyRequireTask('clean', './tasks/clean', {
 
 // includes (header, footer)
 lazyRequireTask('html:build', './tasks/html:build', {
-    src: 'app/pages-raw/*.html',
+    src: 'app/pages-raw/*.{html,jade,pug}',
     dst: 'public/pages-built',
     prefix: '@@',
     basepath: './app/'
@@ -53,7 +53,10 @@ lazyRequireTask('compress:js', './tasks/compress:js', {
 
 // webserver + live reload
 lazyRequireTask('serve', './tasks/serve', {
-    src: 'public/'
+    src: 'public/',
+    livereload: true,
+    directoryListing: false,
+    open: false,
 });
 
 gulp.task('build', gulp.series('styles', 'html:build', 'compress:js'));

@@ -28,6 +28,12 @@
 	header nav ul li:last-child > a {
 		border-top: 1px solid #000;
 	}
+
+	.question-wrapper {
+		&:nth-child(2n + 1) {
+			clear: both;
+		}
+	}
 }
 
 @media screen and (min-width: 1025px) {
@@ -44,4 +50,10 @@
 	.col-10 {width: 83.33%;}
 	.col-11 {width: 91.66%;}
 	.col-12 {width: 100%;}
+
+	.question-wrapper {
+		&:nth-child(3n + 1) {
+			clear: both;
+		}
+	}
 }

@@ -1,0 +1,28 @@
+{
+  "title": "First test",
+  "subject": "Algebra",
+  "duration": 600,
+  "complexity": 75,
+  "questions": [
+    {
+      "title": "Sin 90",
+      "type": 1,
+      "options": [0, 0.5, 1, 42]
+    },
+    {
+      "title": "One option",
+      "type": 1,
+      "options": ["a", "b+", "c"]
+    },
+    {
+      "title": "All answers are correct",
+      "type": 2,
+      "options": ["a+", "b+", "c+"]
+    },
+    {
+      "title": "There is no correct answer",
+      "type": 2,
+      "options": ["a", "b", "c"]
+    }
+  ]
+}

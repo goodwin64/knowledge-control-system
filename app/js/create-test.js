@@ -16,6 +16,35 @@ function onload() {
 }
 
 
+function onSubmitQuestionsNumber() {
+    var testBodyForm = document.getElementById("test-creation-body");
+    var inputQuestionsNumber = document.getElementById("questions-number");
+    var oldQuestionNumber = testBodyForm.childElementCount;
+    var newQuestionsNumber = +inputQuestionsNumber.value;
+
+    if (newQuestionsNumber < +inputQuestionsNumber.min
+        || newQuestionsNumber > +inputQuestionsNumber.max) {
+        // this case means that user input value from keyboard, not by using increment buttons (HTML5 "bug")
+        return;
+    }
+
+    // add / delete questions
+    if (newQuestionsNumber > oldQuestionNumber) {
+        for (var i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
+            testBodyForm.appendChild(generateQuestionsDiv(i));
+        }
+    } else {
+        for (i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
+            testBodyForm.removeChild(testBodyForm.lastElementChild);
+        }
+    }
+
+    // show buttons
+    var toShow = document.getElementById("test-creation-after");
+    toShow.removeAttribute("hidden");
+}
+
+
 function generateQuestionsDiv(indexQuestion) {
     // question wrapper, for aligning
     var questionWrapper = document.createElement("div");
@@ -60,8 +89,9 @@ function generateQuestionsDiv(indexQuestion) {
     // "add new option" button
     var optionAddWrapper = document.createElement("div");
         optionAddWrapper.className += " option-add-wrapper";
-    var optionAdd = document.createElement("button");
-        optionAdd.innerText = "+";
+    var optionAdd = document.createElement("input");
+        optionAdd.setAttribute("type", "button");
+        optionAdd.value = "+";
         optionAdd.className += " option-add";
         optionAddWrapper.appendChild(optionAdd);
         questionContent.appendChild(optionAddWrapper);
@@ -102,8 +132,9 @@ function generateOptionDiv(indexQuestion, indexOption, optionSelectType) {
         optionContent.className += " option-content";
 
     // "delete option" button
-    var optionDelete = document.createElement("button");
-        optionDelete.innerText = "x";
+    var optionDelete = document.createElement("input");
+        optionDelete.setAttribute("type", "button");
+        optionDelete.value = "x";
         optionDelete.className += " option-delete";
         optionDelete.addEventListener('click', function() {
             var optionsWrapper = optionWrapper.parentNode;
@@ -181,35 +212,6 @@ function fillTestFooter() {
     testSaveDraft.addEventListener("click", function() {
         // "save as draft" test IMPL
     });
-}
-
-
-function onSubmitQuestionsNumber() {
-    var testBody = document.getElementById("test-creation-body");
-    var inputQuestionsNumber = document.getElementById("questions-number");
-    var oldQuestionNumber = testBody.childElementCount;
-    var newQuestionsNumber = +inputQuestionsNumber.value;
-
-    if (newQuestionsNumber < +inputQuestionsNumber.min
-        || newQuestionsNumber > +inputQuestionsNumber.max) {
-        // this case means that user input value from keyboard, not by using increment buttons (HTML5 "bug")
-        return;
-    }
-
-    // add / delete questions
-    if (newQuestionsNumber > oldQuestionNumber) {
-        for (var i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
-            testBody.appendChild(generateQuestionsDiv(i));
-        }
-    } else {
-        for (i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
-            testBody.removeChild(testBody.lastElementChild);
-        }
-    }
-
-    // show buttons
-    var toShow = document.getElementById("test-creation-after");
-        toShow.removeAttribute("hidden");
 }
 
 

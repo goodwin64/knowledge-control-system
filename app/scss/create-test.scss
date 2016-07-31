@@ -1,6 +1,4 @@
-@import "main";
-
-$both-input-button-borders: 2px;
+@import "all-pages-common";
 
 .content {
 	#test-creation-head {
@@ -55,10 +53,6 @@ $both-input-button-borders: 2px;
 		.question-wrapper {
 			@extend .col-xs-12, .col-m-6, .col-4;
 			float: left;
-			
-			&:nth-child(3n + 1) {
-				clear: both;
-			}
 
 			.question-content {
 				$question-wrapper-margin: 2%;
@@ -117,7 +111,7 @@ $both-input-button-borders: 2px;
 							padding-left: round(0.5 * $option-select-size);
 						}
 
-						button.option-delete {
+						input.option-delete {
 							height: $buttons-size;
 							width: $buttons-size;
 							color: #bb0000;
@@ -125,7 +119,7 @@ $both-input-button-borders: 2px;
 					}
 				}
 
-				button.option-add {
+				input.option-add {
 					height: $buttons-size;
 					width: $buttons-size * 3;
 					margin-left: $option-select-size;

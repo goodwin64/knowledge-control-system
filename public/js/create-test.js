@@ -11,6 +11,27 @@ function onload() {
     fillTestFooter();
 }
 
+function onSubmitQuestionsNumber() {
+    var testBodyForm = document.getElementById("test-creation-body");
+    var inputQuestionsNumber = document.getElementById("questions-number");
+    var oldQuestionNumber = testBodyForm.childElementCount;
+    var newQuestionsNumber = +inputQuestionsNumber.value;
+    if (newQuestionsNumber < +inputQuestionsNumber.min || newQuestionsNumber > +inputQuestionsNumber.max) {
+        return;
+    }
+    if (newQuestionsNumber > oldQuestionNumber) {
+        for (var i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
+            testBodyForm.appendChild(generateQuestionsDiv(i));
+        }
+    } else {
+        for (i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
+            testBodyForm.removeChild(testBodyForm.lastElementChild);
+        }
+    }
+    var toShow = document.getElementById("test-creation-after");
+    toShow.removeAttribute("hidden");
+}
+
 function generateQuestionsDiv(indexQuestion) {
     var questionWrapper = document.createElement("div");
     questionWrapper.className += " question-wrapper";
@@ -37,8 +58,9 @@ function generateQuestionsDiv(indexQuestion) {
     questionContent.appendChild(optionsWrapper);
     var optionAddWrapper = document.createElement("div");
     optionAddWrapper.className += " option-add-wrapper";
-    var optionAdd = document.createElement("button");
-    optionAdd.innerText = "+";
+    var optionAdd = document.createElement("input");
+    optionAdd.setAttribute("type", "button");
+    optionAdd.value = "+";
     optionAdd.className += " option-add";
     optionAddWrapper.appendChild(optionAdd);
     questionContent.appendChild(optionAddWrapper);
@@ -68,8 +90,9 @@ function generateOptionDiv(indexQuestion, indexOption, optionSelectType) {
     optionContent.setAttribute("type", "text");
     optionContent.setAttribute("placeholder", "e.g. option " + indexOption);
     optionContent.className += " option-content";
-    var optionDelete = document.createElement("button");
-    optionDelete.innerText = "x";
+    var optionDelete = document.createElement("input");
+    optionDelete.setAttribute("type", "button");
+    optionDelete.value = "x";
     optionDelete.className += " option-delete";
     optionDelete.addEventListener("click", function() {
         var optionsWrapper = optionWrapper.parentNode;
@@ -117,27 +140,6 @@ function fillTestFooter() {
     testCancel.addEventListener("click", function() {});
     var testSaveDraft = document.getElementById("test-save-draft");
     testSaveDraft.addEventListener("click", function() {});
-}
-
-function onSubmitQuestionsNumber() {
-    var testBody = document.getElementById("test-creation-body");
-    var inputQuestionsNumber = document.getElementById("questions-number");
-    var oldQuestionNumber = testBody.childElementCount;
-    var newQuestionsNumber = +inputQuestionsNumber.value;
-    if (newQuestionsNumber < +inputQuestionsNumber.min || newQuestionsNumber > +inputQuestionsNumber.max) {
-        return;
-    }
-    if (newQuestionsNumber > oldQuestionNumber) {
-        for (var i = oldQuestionNumber + 1; i <= newQuestionsNumber; i++) {
-            testBody.appendChild(generateQuestionsDiv(i));
-        }
-    } else {
-        for (i = 0; i < oldQuestionNumber - newQuestionsNumber; i++) {
-            testBody.removeChild(testBody.lastElementChild);
-        }
-    }
-    var toShow = document.getElementById("test-creation-after");
-    toShow.removeAttribute("hidden");
 }
 
 function generateQuestionTitle(placeholder) {
