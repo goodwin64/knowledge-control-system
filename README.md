@@ -1,6 +1,8 @@
 # knowledge-control-system
 Course project for EPAM Academy. Subject: "Knowledge control system (tests)".
-You can see the result [HERE](https://goodwin64.github.io/knowledge-control-system/)
+You can see the result:
+on [Github pages](https://goodwin64.github.io/knowledge-control-system/)
+on [Heroku](https://knowledge-control-system.herokuapp.com/)
 
 ## TODO-list
 ###### Общие требования [Task-commn]:
