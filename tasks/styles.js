@@ -1,19 +1,18 @@
 'use strict';
 
-const $ = require('gulp-load-plugins')();
 const gulp = require('gulp');
-const combine = require('stream-combiner2').obj;
+const gulpif = require('gulp-if');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
 
 // const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
 module.exports = function(options) {
     return function() {
-        return combine(
-            gulp.src(options.src),
-            $.if(options.isDevelop, $.sourcemaps.init()),
-            $.sass({outputStyle: options.outputStyle}),
-            $.if(options.isDevelop, $.sourcemaps.write()),
-            gulp.dest('./public/css/')
-        );
+        return gulp.src(options.src)
+            .pipe(gulpif(options.isDevelop, sourcemaps.init()))
+            .pipe(sass({outputStyle: options.outputStyle}))
+            .pipe(gulpif(options.isDevelop, sourcemaps.write()))
+            .pipe(gulp.dest(options.dst));
     };
 };

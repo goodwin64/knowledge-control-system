@@ -13,6 +13,8 @@ function onload() {
 
     // test "footer" - action buttons after all questions
     fillTestFooter();
+    submitQuestionsNumber.click(); // TODO: remove on release
+    // fillWithRandomText();
 }
 
 
@@ -128,6 +130,7 @@ function generateOptionDiv(indexQuestion, indexOption, optionSelectType) {
     // option text
     var optionContent = document.createElement("input");
         optionContent.setAttribute("type", "text");
+        optionContent.setAttribute("name", "option-" + indexQuestion + "-" + indexOption);
         optionContent.setAttribute("placeholder", "e.g. option " + indexOption);
         optionContent.className += " option-content";
 
@@ -200,7 +203,8 @@ function setOptionsTo(selectNode, childrenOptionsType) {
 function fillTestFooter() {
     var testSubmit = document.getElementById("test-submit");
     testSubmit.addEventListener("click", function() {
-        // "submit" test IMPL
+        sendTestData();
+        return false;
     });
 
     var testCancel = document.getElementById("test-cancel");
@@ -243,6 +247,77 @@ function getInputTypeFromSelect(inputValue) {
             return "radio";
         case "multi-option":
             return "checkbox";
+        default:
+            return null;
+    }
+}
+
+
+function fillWithRandomText() {
+    var textInputs = document.querySelectorAll("#test-creation-body input[type=text]");
+    for (var i = 0; i < textInputs.length; i++) {
+        textInputs[i].value = Math.random();
+    }
+
+    var optionSelectors = document.getElementsByClassName("options-wrapper");
+    for (i = 0; i < optionSelectors.length; i++) {
+        optionSelectors[i].children[i].querySelector("input[type='radio']").checked = true;
+    }
+}
+
+
+function sendTestData() {
+    var resultJSON = {};
+    resultJSON.title = document.getElementById("test-title").value;
+    resultJSON.subject = document.getElementById("test-subject").value;
+    resultJSON.duration = +document.getElementById("test-duration").value;
+    resultJSON.complexity = +document.getElementById("test-complexity").value;
+    resultJSON.questions = [];
+    resultJSON.answers = [];
+
+    var allQuestions = document.getElementsByClassName("question-content");
+    for (var i = 0; i < allQuestions.length; i++) {
+        var questionContent = allQuestions[i];
+        var questionTitle = questionContent.querySelector(".question-title-wrapper input").value;
+        var questionType = getQuestionTypeForJSON(questionContent.querySelector(".question-head-wrapper select").value);
+        var questionOptionsWrappers = questionContent.getElementsByClassName("option-wrapper");
+        var questionOptions = [];
+        var questionAnswers = 0;
+
+        for (var j = 0; j < questionOptionsWrappers.length; j++) {
+            var option = questionOptionsWrappers[j].querySelector("input[type='text']").value;
+            var isAnswer = questionOptionsWrappers[j].firstElementChild.checked;
+            questionOptions.push(option);
+            questionAnswers += (isAnswer ? Math.pow(2, j) : 0);
+        }
+
+        resultJSON.questions.push({
+            title: questionTitle,
+            type: questionType,
+            options: questionOptions
+        });
+        resultJSON.answers.push(questionAnswers);
+    }
+    console.log(resultJSON);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:8080/upload', true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            alert("Test uploaded");
+        }
+    };
+    xhr.send(JSON.stringify(resultJSON));
+}
+
+
+function getQuestionTypeForJSON(stringType) {
+    switch (stringType) {
+        case "one-option":
+            return 1;
+        case "multi-option":
+            return 2;
         default:
             return null;
     }

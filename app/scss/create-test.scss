@@ -6,43 +6,41 @@
 			text-align: center;
 		}
 
-		.questions-number-wrapper {
+		.test-params-wrapper {
 			$elements-height: round(0.5 * $main-elements-height);
-			$elements-font-size: 2em;
+			$elements-font-size: round($main-elements-height / 4);
 			padding: round(0.5 * $elements-height);
 			overflow: hidden;
 
-			div:first-child {
+			div {
 				@extend .col-xs-12, .col-m-4, .col-4;
 				float: left;
-			}
 
-			div:last-child {
-				@extend .col-xs-12, .col-m-8, .col-8;
-				display: inline-block;
-			}
+				p {
+					line-height: $elements-height;
+					font-size: $elements-font-size;
+				}
 
-			p {
-				line-height: $elements-height;
-				font-size: $elements-font-size;
-			}
+				// height = box-height + border-top + border-bottom
+				input[type="number"] {
+					height: $elements-height;
+					font-size: $elements-font-size;
+					vertical-align: top;
+					width: 75px;
 
-			// height = box-height + border-top + border-bottom
-			input[type="number"] {
-				height: $elements-height;
-				font-size: $elements-font-size;
-				vertical-align: top;
-				width: 75px;
-				margin-left: $elements-height / 2;
-			}
+					&[name="test-complexity"]:after {
+						content: '%';
+					}
+				}
 
-			// height = box-height
-			button {
-				vertical-align: top;
-				height: $elements-height + 2 * $both-input-button-borders;
-				line-height: $elements-height + 2 * $both-input-button-borders;
-				margin: auto;
-				font-size: $elements-font-size;
+				// height = box-height
+				input[type="button"] {
+					vertical-align: top;
+					height: $elements-height + 2 * $both-input-button-borders;
+					line-height: $elements-height + 2 * $both-input-button-borders;
+					margin: auto;
+					font-size: $elements-font-size;
+				}
 			}
 		}
 	}

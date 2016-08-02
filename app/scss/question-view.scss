@@ -52,18 +52,18 @@
 						vertical-align: middle;
 					}
 
-					input.option-select {
+					.option-select {
 						height: $option-select-size;
 						width: $option-select-size;
 					}
 
-					input.option-content {
+					.option-content {
 						height: $buttons-size - 2 * $both-input-button-borders;
 						width: 75%;
 						padding-left: round(0.5 * $option-select-size);
 					}
 
-					input.option-delete {
+					.option-delete {
 						height: $buttons-size;
 						width: $buttons-size;
 						color: #bb0000;

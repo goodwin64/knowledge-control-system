@@ -27,8 +27,8 @@ header {
     h1 {
         border: 2px solid #000;
 	    text-align: center;
-	    height: round($main-elements-height * 1.25);
-	    line-height: round($main-elements-height * 1.25);
+	    height: $main-elements-height;
+	    line-height: $main-elements-height;
 	    font-size: round($main-elements-height / 2);
 
 	    span {
@@ -60,14 +60,14 @@ header {
 				}
 
 				a {
-					height: $main-elements-height;
-					line-height: $main-elements-height;
+					height: round($main-elements-height / 1.5);
+					line-height: round($main-elements-height / 1.5);
 					width: 90%;
 					padding: 0 5%;
 					display: block;
 					float: left;
 					text-align: center;
-					font-size: round($main-elements-height / 2.25);
+					font-size: round($main-elements-height / 2.5);
 				}
 			}
 
@@ -76,7 +76,7 @@ header {
 					display: block;
 					z-index: 1;
 					width: inherit;
-					margin-top: $main-elements-height;
+					margin-top: round($main-elements-height / 1.5);
 				}
 
 				.dropdown-content {
@@ -87,7 +87,7 @@ header {
 
 					a {
 						text-align: left;
-						font-size: round($main-elements-height / 2.75);
+						font-size: round($main-elements-height / 3);
 					}
 				}
 			}
