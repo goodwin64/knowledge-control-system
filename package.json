@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/goodwin64/knowledge-control-system/issues"
   },
-  "devDependencies": {
+  "dependencies": {
     "body-parser": "latest",
     "connect-livereload": "latest",
     "del": "latest",
