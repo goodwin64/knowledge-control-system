@@ -9,7 +9,8 @@ module.exports = function(options) {
 
         return gulp.src(options.src)
             .pipe(jade({
-                locals: test001
+                locals: test001,
+                pretty: true
             }))
             .pipe(gulp.dest(options.dst));
     };
