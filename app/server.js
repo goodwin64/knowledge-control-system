@@ -9,6 +9,8 @@ const path = require('path');
 const sh = require('shelljs');
 const pug = require('pug');
 
+const PORT = process.env.PORT || 3000;
+
 app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(require('connect-livereload')());
@@ -36,8 +38,8 @@ app.post('/upload', function (req, res) {
     });
 });
 
-app.listen(8080, function () {
-    console.log('App listening on port 8080');
+app.listen(PORT, function () {
+    console.log('App listening on port ' + PORT);
 });
 
 /**
