@@ -26,10 +26,8 @@ lazyRequireTask('clean', './tasks/clean', {
 
 // includes (header, footer)
 lazyRequireTask('html:build', './tasks/html:build', {
-    src: 'app/pages-raw/*.{html,jade,pug}',
+    src: 'app/pages-raw/*.pug',
     dst: 'public/',
-    prefix: '@@',
-    basepath: './app/'
 });
 
 lazyRequireTask('lint', './tasks/lint', {
