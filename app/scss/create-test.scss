@@ -16,9 +16,10 @@
 				@extend .col-xs-12, .col-m-4, .col-4;
 				float: left;
 
-				p {
+				label {
 					line-height: $elements-height;
 					font-size: $elements-font-size;
+					display: block;
 				}
 
 				// height = box-height + border-top + border-bottom

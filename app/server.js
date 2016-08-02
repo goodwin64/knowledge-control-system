@@ -7,10 +7,18 @@ const app = express();
 const fs = require('fs');
 const path = require('path');
 const sh = require('shelljs');
+const pug = require('pug');
 
 app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(require('connect-livereload')());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+app.get('/test:id', function (req, res) {
+    var test = require('../fromDB/tests/test' + req.params.id + '.json');
+    res.render('test-view', test);
+});
 
 app.post('/upload', function (req, res) {
     var dataFromClient = JSON.stringify(req.body, null, 2);
@@ -18,6 +26,7 @@ app.post('/upload', function (req, res) {
     var pathPrefix = "test";
     var newFileIndex = countFiles(pathToTestsDir) + 1;
     var pathToTest = path.join(__dirname, "../" + pathToTestsDir + pathPrefix + newFileIndex + ".json");
+
     fs.writeFile(pathToTest, dataFromClient, "utf8", function(err) {
         if (err) {
             console.log(err);
