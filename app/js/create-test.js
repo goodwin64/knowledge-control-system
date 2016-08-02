@@ -301,7 +301,7 @@ function sendTestData() {
     console.log(resultJSON);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8080/upload', true);
+    xhr.open('POST', '/upload', true);
     xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
