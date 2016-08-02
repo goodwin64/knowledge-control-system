@@ -14,6 +14,7 @@ function lazyRequireTask(taskName, path, options) {
 
 lazyRequireTask('styles', './tasks/styles', {
     src: 'app/scss/*.scss',
+    dst: 'public/css/',
     outputStyle: (isDevelop ? 'full' : 'compressed'),
     isDevelop: isDevelop
 });
@@ -26,7 +27,7 @@ lazyRequireTask('clean', './tasks/clean', {
 // includes (header, footer)
 lazyRequireTask('html:build', './tasks/html:build', {
     src: 'app/pages-raw/*.{html,jade,pug}',
-    dst: 'public/pages-built',
+    dst: 'public/',
     prefix: '@@',
     basepath: './app/'
 });
