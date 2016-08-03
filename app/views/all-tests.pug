@@ -1,0 +1,21 @@
+extends layout
+
+block title
+	title Tests
+
+block styles
+	link(href='css/test-params-view.css', rel='stylesheet')
+
+block content
+	.page-wrapper
+		each test in tests
+			.test-wrapper
+				.test-params
+					- var title = test.title;
+					- var subject = test.subject;
+					- var description = test.description;
+					- var duration = test.duration;
+					- var complexity = test.complexity;
+					include _test-params
+				button
+					a(href="test" + test.id) PASS

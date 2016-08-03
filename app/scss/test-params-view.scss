@@ -1,0 +1,15 @@
+.test-params {
+	padding: 10px;
+
+	p>span {
+		color: #f88;
+	}
+
+	span.test-duration:after {
+		content: ' sec';
+	}
+
+	span.test-complexity:after {
+		content: '%';
+	}
+}

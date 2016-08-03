@@ -1,0 +1,35 @@
+extends layout
+block title
+	title CYPI, Test: #{title}
+block styles
+	link(href='css/test-view.css', rel='stylesheet')
+	link(href='css/question-view.css', rel='stylesheet')
+block content
+	.page-wrapper
+		.test-wrapper
+			.test-params
+				include _test-params
+			.test-content
+				.questions-wrapper
+					each question, questionIndex in questions
+						.question-wrapper.col-xs-12.col-m-6.col-4
+							.question-content
+								case question["type"]
+									when 1
+										- var selector = "radio"
+									when 2
+										- var selector = "checkbox"
+									default
+										- var selector = null
+								.question-head-wrapper
+									h3= "Question " + (questionIndex + 1)
+								.question-title-wrapper
+									h4= question["title"]
+								.options-wrapper
+									each option, optionIndex in question["options"]
+										.option-wrapper
+											input.option-select(type=selector, id="option-" + questionIndex + "-" + optionIndex, name="option-" + questionIndex)
+											label.option-content(for="option-" + questionIndex + "-" + optionIndex)= option
+								// TODO: add "help/tip" feature
+			.test-after
+				// social sharing

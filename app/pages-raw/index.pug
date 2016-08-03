@@ -1,13 +1,9 @@
-doctype html
-html(lang="en")
-	head
-		include ../partials/head-common
-		title Knowledge control system
-		link(rel="stylesheet" type="text/css" href="css/all-pages-common.css")
-	body
-		include ../partials/header
-		div.page-wrapper.col-10
-			div.content
-				div
-					p Here will be content
-		include ../partials/footer
+extends ../views/layout
+
+block title
+	title CYPI
+block content
+	div.page-wrapper
+		div.content
+			div
+				p Here will be content

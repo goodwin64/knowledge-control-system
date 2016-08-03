@@ -1,12 +1,8 @@
 .test-wrapper {
-	.test-params {
-		h3 {
-			color: #f88;
-		}
-	}
+	@import "test-params-view";
 
 	.test-content {
-		@import "question-view";
+		// it's recommend to place styles for additional test content, e.g. pagination
 	}
 
 	.test-after {

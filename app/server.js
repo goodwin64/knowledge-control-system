@@ -17,19 +17,29 @@ app.use(require('connect-livereload')());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.get('/tests', function (req, res) {
+    var testsPath = path.join(__dirname, "../fromDB/tests/");
+    var testsObj = {tests: []};
+    for (var i = 1; i <= countFiles(testsPath); i++) {
+        testsObj.tests.push(require(testsPath + "test" + i + '.json'));
+    }
+    res.render('all-tests', testsObj);
+});
+
 app.get('/test:id', function (req, res) {
     var test = require('../fromDB/tests/test' + req.params.id + '.json');
-    res.render('test-view', test);
+    res.render('test', test);
 });
 
 app.post('/upload', function (req, res) {
-    var dataFromClient = JSON.stringify(req.body, null, 2);
+    var dataFromClient = req.body;
     var pathToTestsDir = "fromDB/tests/";
     var pathPrefix = "test";
     var newFileIndex = countFiles(pathToTestsDir) + 1;
+    dataFromClient.id = newFileIndex; // add one more field on server
     var pathToTest = path.join(__dirname, "../" + pathToTestsDir + pathPrefix + newFileIndex + ".json");
 
-    fs.writeFile(pathToTest, dataFromClient, "utf8", function(err) {
+    fs.writeFile(pathToTest, JSON.stringify(dataFromClient, null, 2), "utf8", function(err) {
         if (err) {
             console.log(err);
         }

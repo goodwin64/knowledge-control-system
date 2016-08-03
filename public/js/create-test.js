@@ -195,6 +195,7 @@ function sendTestData() {
     resultJSON.subject = document.getElementById("test-subject").value;
     resultJSON.duration = +document.getElementById("test-duration").value;
     resultJSON.complexity = +document.getElementById("test-complexity").value;
+    resultJSON.description = document.getElementById("test-description").value;
     resultJSON.questions = [];
     resultJSON.answers = [];
     var allQuestions = document.getElementsByClassName("question-content");

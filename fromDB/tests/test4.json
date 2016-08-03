@@ -1,0 +1,80 @@
+{
+  "title": "The simplest test",
+  "subject": "Logic",
+  "duration": 120,
+  "complexity": 1,
+  "description": "The most simple test.\nAnswers are obvious.",
+  "questions": [
+    {
+      "title": "All options are correct",
+      "type": 2,
+      "options": [
+        "Correct +",
+        "Correct +",
+        "Correct +",
+        "Correct +",
+        "Correct +"
+      ]
+    },
+    {
+      "title": "Option 1 is correct",
+      "type": 1,
+      "options": [
+        "Correct +"
+      ]
+    },
+    {
+      "title": "No correct options",
+      "type": 2,
+      "options": [
+        "NO",
+        "NO!",
+        "NO-O-OO!!!"
+      ]
+    },
+    {
+      "title": "The last (10) is correct",
+      "type": 1,
+      "options": [
+        "Incorrect (-)",
+        "Incorrect (-)",
+        "Incorrect (-)",
+        "Incorrect (-)",
+        "Incorrect (-)",
+        "Incorrect (-)",
+        "Incorrect (-)",
+        "Incorrect (-)",
+        "Incorrect (-)",
+        "Correct (+)"
+      ]
+    },
+    {
+      "title": "Options 1, 2, 6 are correct",
+      "type": 2,
+      "options": [
+        "1",
+        "2",
+        "",
+        "",
+        "",
+        "6"
+      ]
+    },
+    {
+      "title": "Do not select option 1, it's incorrect!",
+      "type": 1,
+      "options": [
+        ""
+      ]
+    }
+  ],
+  "answers": [
+    31,
+    1,
+    0,
+    512,
+    35,
+    0
+  ],
+  "id": 4
+}
