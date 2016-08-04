@@ -22,10 +22,12 @@ block content
 					div
 						span.seconds
 						.smalltext Seconds
-			.test-pagination.col-xs-12.col-m-4.col-4
-				each _, i in questions
-					.test-pagination-elem(data-question-index=i)= i+1
-			.test-content.col-xs-12.col-m-8.col-8
+			.test-controls
+				.test-pagination.col-xs-12.col-m-4.col-4(hidden)
+					each _, i in questions
+						.test-pagination-elem(data-question-index=i)= i+1
+				button#submit-test(hidden) End test (submit answers)
+			#test-content.col-xs-12.col-m-8.col-8
 				each question, questionIndex in questions
 					.question-wrapper(hidden)
 						.question-content
@@ -50,7 +52,6 @@ block content
 				.test-before
 					button#start-test START
 			.test-after
-				button#submit-test(hidden) End test (submit answers)
 				// social sharing
 block scripts-after-body
 	script(src="js/test-view.js")

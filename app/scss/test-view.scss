@@ -3,28 +3,37 @@
 	overflow: hidden;
 	padding: 0 10px;
 
-	.test-pagination {
+	.test-controls {
 		float: left;
-		overflow: hidden;
 
-		.test-pagination-elem {
-			$size: 50px;
-			width: $size;
-			height: $size;
-			line-height: $size;
-			float: left;
-			text-align: center;
-			background: #ccf;
+		.test-pagination {
+			width: 100%;
+			overflow: hidden;
 
-			&:nth-of-type(2n) {
-				background: #cfc;
-			}
+			.test-pagination-elem {
+				$size: 50px;
+				width: $size;
+				height: $size;
+				line-height: $size;
+				float: left;
+				display: inline-block;
+				text-align: center;
+				background: #ccf;
 
-			@media screen and (min-width: 768px) and (max-width: 1024px) {
-				&:nth-of-type(3n+1) {
-					clear: both;
+				&:nth-of-type(2n) {
+					background: #cfc;
+				}
+
+				@media screen and (min-width: 768px) and (max-width: 1024px) {
+					&:nth-of-type(3n+1) {
+						clear: both;
+					}
 				}
 			}
+		}
+
+		#submit-test {
+			margin: 10px;
 		}
 	}
 
@@ -32,8 +41,8 @@
 		font-family: sans-serif;
 		color: #fff;
 		font-weight: 100;
-		text-align: center;
 		font-size: 30px;
+		overflow: hidden;
 
 		.time-item-wrapper {
 			display: inline-block;
@@ -57,7 +66,7 @@
 		}
 	}
 
-	.test-content {
+	#test-content {
 		float: left;
 		overflow: hidden;
 

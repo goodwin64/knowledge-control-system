@@ -13,6 +13,7 @@
     startButton.onclick = function() {
         this.hidden = true;
         submitTestButton.hidden = false;
+        document.getElementsByClassName("test-pagination")[0].hidden = false;
         document.getElementsByClassName("test-pagination-elem")[0].click();
         // start test (it's possible to send additional data on server to check time)
         var testDurationMs = +document.getElementById("test-duration").innerText * 1000;
@@ -29,7 +30,7 @@
     var paginationAnchors = document.getElementsByClassName("test-pagination-elem");
     for (var i = 0; i < paginationAnchors.length; i++) {
         paginationAnchors[i].onclick = function() {
-            var testContent = this.parentElement.nextSibling;
+            var testContent = document.getElementById("test-content");
             var indexToShow = this.getAttribute("data-question-index");
             onPaginationAnchorClick(testContent.children, indexToShow); // pass "question wrapper" collection
         };

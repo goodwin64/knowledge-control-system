@@ -11,6 +11,7 @@
     startButton.onclick = function() {
         this.hidden = true;
         submitTestButton.hidden = false;
+        document.getElementsByClassName("test-pagination")[0].hidden = false;
         document.getElementsByClassName("test-pagination-elem")[0].click();
         var testDurationMs = +document.getElementById("test-duration").innerText * 1e3;
         setTimeout(function() {
@@ -24,7 +25,7 @@
     var paginationAnchors = document.getElementsByClassName("test-pagination-elem");
     for (var i = 0; i < paginationAnchors.length; i++) {
         paginationAnchors[i].onclick = function() {
-            var testContent = this.parentElement.nextSibling;
+            var testContent = document.getElementById("test-content");
             var indexToShow = this.getAttribute("data-question-index");
             onPaginationAnchorClick(testContent.children, indexToShow);
         };
