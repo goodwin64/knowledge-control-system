@@ -1,8 +1,8 @@
 # knowledge-control-system
 Course project for EPAM Academy. Subject: "Knowledge control system (tests)".
-You can see the result:
-on [Github pages](https://goodwin64.github.io/knowledge-control-system/)
-on [Heroku](https://knowledge-control-system.herokuapp.com/)
+<br/>You can see the result:
+<br/>on [Github pages](https://goodwin64.github.io/knowledge-control-system/)
+<br/>on [Heroku](https://knowledge-control-system.herokuapp.com/)
 
 ## TODO-list
 ###### Общие требования [Task-commn]:
@@ -41,6 +41,7 @@ on [Heroku](https://knowledge-control-system.herokuapp.com/)
 ###### По заданию [Task-specf] (Система тестирования знаний):
 - Выбор (поиск) теста. 
 - Прохождение теста с контролем времени. 
+    (готово; осталось реализовать проверку ответов и вывод статистики, п.3)
 - Статистика тестирования.  
 - `*`Редактирование тестов. 
 - `*`Расширенная статистика тестирования.<br>
