@@ -42,14 +42,15 @@
 		color: #fff;
 		font-weight: 100;
 		font-size: 30px;
+		text-align: center;
 		overflow: hidden;
 
 		.time-item-wrapper {
 			display: inline-block;
 
-			div {
+			&>div {
 				width: 100%;
-				padding: 10px;
+				padding: 10px 0 10px;
 				background: #00BF96;
 
 				span {
