@@ -26,7 +26,7 @@ lazyRequireTask('clean', './tasks/clean', {
 
 // includes (header, footer)
 lazyRequireTask('html:build', './tasks/html:build', {
-    src: 'app/pages-raw/*.pug',
+    src: 'app/pages-static/*.pug',
     dst: 'public/',
 });
 

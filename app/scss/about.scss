@@ -1,0 +1,45 @@
+@import "global-variables";
+
+.text {
+	#middle #page-title {
+		padding: 10px;
+		margin-top: -70px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 2em;
+		color: $color-links;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: normal;
+		color: $color-links;
+		font-family: "Helvetica Neue", Helvetica, Arial , sans-serif;
+	}
+
+	h1, h2, h3 {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+
+	h2 {
+		font-size: 1.5em;
+		line-height: 1;
+		margin-bottom: 1em;
+	}
+
+	p {
+		margin: 0 0 1.5em;
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+
+	ul, ol {
+		margin: 0 1.5em 1.5em 1.5em;
+	}
+
+	div {
+		padding: 0 10px;
+	}
+}

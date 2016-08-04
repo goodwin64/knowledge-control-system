@@ -117,6 +117,7 @@ body {
     // sizes and position
 	@extend .col-10;
     margin: 0 auto;
+	overflow: hidden;
     // styles and color design
     background: rgba(100%, 100%, 100%, 0.95);
 }
