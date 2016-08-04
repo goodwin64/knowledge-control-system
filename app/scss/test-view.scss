@@ -1,8 +1,46 @@
 .test-wrapper {
 	@import "test-params-view";
+	overflow: hidden;
+	padding: 0 10px;
+
+	.test-pagination {
+		float: left;
+		overflow: hidden;
+
+		.test-pagination-elem {
+			$size: 50px;
+			width: $size;
+			height: $size;
+			line-height: $size;
+			float: left;
+			text-align: center;
+			background: #ccf;
+
+			&:nth-of-type(2n) {
+				background: #cfc;
+			}
+
+			@media screen and (min-width: 1025px) {
+				&:nth-of-type(5n+1) {
+					clear: both;
+				}
+			}
+
+			@media screen and (min-width: 768px) and (max-width: 1024px) {
+				&:nth-of-type(3n+1) {
+					clear: both;
+				}
+			}
+		}
+	}
 
 	.test-content {
-		// it's recommend to place styles for additional test content, e.g. pagination
+		float: left;
+		overflow: hidden;
+
+		.question-wrapper {
+			float: none;
+		}
 	}
 
 	.test-after {

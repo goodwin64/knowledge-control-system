@@ -1,82 +1,78 @@
 @import "global-variables";
 
-.questions-wrapper {
-	overflow: hidden;
+.question-wrapper {
+	float: left;
 
-	.question-wrapper {
-		float: left;
+	.question-content {
+		$question-wrapper-margin: 2%;
+		$question-wrapper-padding: 2%;
+		$option-select-size: 18px;
+		$buttons-size: round(1.25 * $option-select-size);
 
-		.question-content {
-			$question-wrapper-margin: 2%;
-			$question-wrapper-padding: 2%;
-			$option-select-size: 18px;
-			$buttons-size: round(1.25 * $option-select-size);
+		margin: $question-wrapper-margin;
+		padding: $question-wrapper-padding;
+		position: relative;
+		-webkit-box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
+		-moz-box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
+		box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
 
-			margin: $question-wrapper-margin;
-			padding: $question-wrapper-padding;
-			position: relative;
-			-webkit-box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
-			-moz-box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
-			box-shadow: 0 0 5px 1px rgba(128, 128, 128, 1);
+		h3 {
+			max-width: 50%;
+			font-size: round(1.5 * $option-select-size);
+		}
 
-			h3 {
-				max-width: 50%;
-				font-size: round(1.5 * $option-select-size);
+		select {
+			top: 5px;
+			right: 5px;
+			position: absolute;
+			max-width: 50%;
+		}
+
+		.question-title-wrapper {
+			input {
+				width: 75%;
+				margin-left: $option-select-size;
+				font-size: $buttons-size;
+				padding-left: round(0.5 * $option-select-size);
 			}
+		}
 
-			select {
-				top: 5px;
-				right: 5px;
-				position: absolute;
-				max-width: 50%;
-			}
+		.options-wrapper {
+			.option-wrapper {
+				margin: 2px 0;
 
-			.question-title-wrapper {
-				input {
+				&:first-of-type {
+					clear: both;
+				}
+
+				input, button {
+					vertical-align: middle;
+				}
+
+				.option-select {
+					height: $option-select-size;
+					width: $option-select-size;
+				}
+
+				.option-content {
+					height: $buttons-size - 2 * $both-input-button-borders;
 					width: 75%;
-					margin-left: $option-select-size;
-					font-size: $buttons-size;
 					padding-left: round(0.5 * $option-select-size);
 				}
-			}
 
-			.options-wrapper {
-				.option-wrapper {
-					margin: 2px 0;
-
-					&:first-of-type {
-						clear: both;
-					}
-
-					input, button {
-						vertical-align: middle;
-					}
-
-					.option-select {
-						height: $option-select-size;
-						width: $option-select-size;
-					}
-
-					.option-content {
-						height: $buttons-size - 2 * $both-input-button-borders;
-						width: 75%;
-						padding-left: round(0.5 * $option-select-size);
-					}
-
-					.option-delete {
-						height: $buttons-size;
-						width: $buttons-size;
-						color: #bb0000;
-					}
+				.option-delete {
+					height: $buttons-size;
+					width: $buttons-size;
+					color: #bb0000;
 				}
 			}
+		}
 
-			input.option-add {
-				height: $buttons-size;
-				width: $buttons-size * 3;
-				margin-left: $option-select-size;
-				color: #0b0;
-			}
+		input.option-add {
+			height: $buttons-size;
+			width: $buttons-size * 3;
+			margin-left: $option-select-size;
+			color: #0b0;
 		}
 	}
 }

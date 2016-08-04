@@ -9,27 +9,31 @@ block content
 		.test-wrapper
 			.test-params
 				include _test-params
-			.test-content
-				.questions-wrapper
-					each question, questionIndex in questions
-						.question-wrapper.col-xs-12.col-m-6.col-4
-							.question-content
-								case question["type"]
-									when 1
-										- var selector = "radio"
-									when 2
-										- var selector = "checkbox"
-									default
-										- var selector = null
-								.question-head-wrapper
-									h3= "Question " + (questionIndex + 1)
-								.question-title-wrapper
-									h4= question["title"]
-								.options-wrapper
-									each option, optionIndex in question["options"]
-										.option-wrapper
-											input.option-select(type=selector, id="option-" + questionIndex + "-" + optionIndex, name="option-" + questionIndex)
-											label.option-content(for="option-" + questionIndex + "-" + optionIndex)= option
-								// TODO: add "help/tip" feature
+			.test-pagination.col-xs-12.col-m-4.col-4
+				each _, i in questions
+					.test-pagination-elem(data-question-index=i)= i+1
+			.test-content.col-xs-12.col-m-8.col-8
+				each question, questionIndex in questions
+					.question-wrapper(hidden)
+						.question-content
+							case question["type"]
+								when 1
+									- var selector = "radio"
+								when 2
+									- var selector = "checkbox"
+								default
+									- var selector = null
+							.question-head-wrapper
+								h3= "Question " + (questionIndex + 1)
+							.question-title-wrapper
+								h4= question["title"]
+							.options-wrapper
+								each option, optionIndex in question["options"]
+									.option-wrapper
+										input.option-select(type=selector, id="option-" + questionIndex + "-" + optionIndex, name="option-" + questionIndex)
+										label.option-content(for="option-" + questionIndex + "-" + optionIndex)= option
+							// TODO: add "help/tip" feature
 			.test-after
 				// social sharing
+block scripts-after-body
+	script(src="js/test-view.js")
