@@ -299,11 +299,10 @@ function sendTestData() {
         });
         resultJSON.answers.push(questionAnswers);
     }
-    console.log(resultJSON);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/upload', true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhr.open('POST', '/tests', true);
+    xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             alert("Test uploaded");

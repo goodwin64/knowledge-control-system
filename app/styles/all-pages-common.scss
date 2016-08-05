@@ -12,79 +12,7 @@
 }
 
 // ------------------------------ page structure (#page-wrap)
-header {
-    @extend .page-wrapper;
-
-    h1 {
-        border: 2px solid #000;
-	    text-align: center;
-	    height: $main-elements-height;
-	    line-height: $main-elements-height;
-	    font-size: round($main-elements-height / 2);
-
-	    span {
-		    color: #f88;
-	    }
-    }
-
-	nav {
-		border: 2px solid #000;
-		border-top: 0;
-		overflow: hidden;
-
-		ul {
-			$li-delimiter: 1px solid #000;
-			list-style-type: none;
-			overflow: hidden;
-
-			li {
-				//overflow: hidden;
-				float: left;
-
-				& > a {
-					border-right: $li-delimiter;
-				}
-
-				&:last-child > a {
-					float: right;
-					border-right: none;
-				}
-
-				a {
-					height: round($main-elements-height / 1.5);
-					line-height: round($main-elements-height / 1.5);
-					width: 90%;
-					padding: 0 5%;
-					display: block;
-					float: left;
-					text-align: center;
-					font-size: round($main-elements-height / 2.5);
-				}
-			}
-
-			.dropdown {
-				&:hover .dropdown-content {
-					display: block;
-					z-index: 1;
-					width: inherit;
-					margin-top: round($main-elements-height / 1.5);
-				}
-
-				.dropdown-content {
-					display: none;
-					position: absolute;
-					background-color: $color-links-bg;
-					box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-
-					a {
-						text-align: left;
-						font-size: round($main-elements-height / 3);
-					}
-				}
-			}
-		}
-	}
-}
+@import "header";
 
 .content {
 	padding: 5px;
@@ -94,17 +22,7 @@ header {
 
 }
 
-footer {
-    @extend .page-wrapper;
-
-    details {
-	    padding: 5px;
-
-	    summary {
-		    outline: none;
-	    }
-    }
-}
+@import "footer";
 
 // ------------------------------ partial cases
 body {

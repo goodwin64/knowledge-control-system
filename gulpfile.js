@@ -12,42 +12,46 @@ function lazyRequireTask(taskName, path, options) {
     });
 }
 
-lazyRequireTask('styles', './tasks/styles', {
-    src: 'app/styles/*.styles',
-    dst: 'public/css/',
-    outputStyle: (isDevelop ? 'full' : 'compressed'),
-    isDevelop: isDevelop
-});
-
 // delete "dst" dir (usually before building)
 lazyRequireTask('clean', './tasks/clean', {
-    dst: 'public'
+    dst: 'public/'
+});
+
+lazyRequireTask('build:styles', './tasks/build:styles', {
+    src: 'app/styles/*.{scss,sass,css}',
+    dst: 'public/css/',
+    outputStyle: (isDevelop ? 'full' : 'compressed'),
+    isDevelop: isDevelop,
+    includePaths: ''
 });
 
 // includes (header, footer)
-lazyRequireTask('html:build', './tasks/html:build', {
+lazyRequireTask('build:html', './tasks/build:html', {
     src: 'app/assets/pages-static/*.pug',
     dst: 'public/',
+    taskName: "build:html"
+});
+
+// execute manually from terminal (doesn't work on NodeJS v0.10.25)
+lazyRequireTask('build:images', './tasks/build:images', {
+    src: 'app/assets/images/**/*.{jpg,png,ico}',
+    dst: 'public/images/',
+    taskName: "build:images"
+});
+
+// uglify, for production
+lazyRequireTask('build:scripts', './tasks/build:scripts', {
+    src: 'app/scripts/*.js',
+    dst: 'public/scripts/',
+    mangle: !isDevelop,
+    compress: !isDevelop,
+    output: { beautify: isDevelop },
+    taskName: "build:scripts"
 });
 
 lazyRequireTask('lint', './tasks/lint', {
     cacheFilePath: process.cwd() + '/tmp/lintCache.json',
     src: 'app/**/*.scripts'
-});
-
-// execute manually from terminal (doesn't work on NodeJS v0.10.25)
-lazyRequireTask('compress:images', './tasks/compress:images', {
-    src: 'app/assets/images/*.{jpg,png,ico}',
-    dst: 'public/images/'
-});
-
-// uglify, for production
-lazyRequireTask('compress:scripts', './tasks/compress:scripts', {
-    src: 'app/scripts/*.js',
-    dst: 'public/scripts/',
-    mangle: !isDevelop,
-    compress: !isDevelop,
-    output: { beautify: isDevelop }
 });
 
 // webserver + live reload
@@ -58,10 +62,12 @@ lazyRequireTask('serve', './tasks/serve', {
     open: false,
 });
 
-gulp.task('build', gulp.series('styles', 'html:build', 'compress:scripts'));
+gulp.task('build',
+    gulp.series('build:styles', 'build:html', 'build:scripts', 'build:images')
+);
 
 gulp.task('watch', function() {
-    gulp.watch('app/**/*.*', gulp.series('styles', 'html:build', 'compress:scripts'));
+    gulp.watch('app/**/*.*', gulp.series('build'));
 });
 
 gulp.task('dev',

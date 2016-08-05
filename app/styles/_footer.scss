@@ -1,0 +1,13 @@
+@import "global-variables";
+
+footer {
+	@extend .page-wrapper;
+
+	details {
+		padding: 5px;
+
+		summary {
+			outline: none;
+		}
+	}
+}

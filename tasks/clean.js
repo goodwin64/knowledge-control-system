@@ -2,10 +2,10 @@
 
 const del = require('del');
 
-module.exports = function(options) {
+module.exports = function (options) {
 
-  return function() {
-    return del(options.dst);
-  };
+    return function () {
+        return del(options.dst);
+    };
 
 };

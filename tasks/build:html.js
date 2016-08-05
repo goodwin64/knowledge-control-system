@@ -5,7 +5,7 @@ const pug = require('gulp-pug');
 
 module.exports = function(options) {
     return function () {
-        return gulp.src(options.src)
+        return gulp.src(options.src, {since: gulp.lastRun(options.taskName)})
             .pipe(pug({
                 pretty: true
             }))

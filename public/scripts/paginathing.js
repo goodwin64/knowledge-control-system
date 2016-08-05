@@ -6,7 +6,7 @@
         this.startPage = 1;
         this.currentPage = 1;
         this.totalItems = this.el.children().length;
-        this.totalPages = Math.ceil(this.totalItems / this.options.perPage);
+        this.totalPages = Math.max(Math.ceil(this.totalItems / this.options.perPage), options.limitPagination);
         this.container = $("<nav></nav>").addClass(this.options.containerClass);
         this.ul = $("<ul></ul>").addClass(this.options.ulClass);
         this.show(this.startPage);
@@ -40,7 +40,7 @@
                     start = 1;
                     end = limit;
                 } else if (_self.currentPage + Math.floor(limit / 2) >= _self.totalPages) {
-                    start = _self.totalPages - limit;
+                    start = _self.totalPages + 1 - limit;
                     end = _self.totalPages;
                 } else {
                     start = _self.currentPage - Math.ceil(limit / 2);
