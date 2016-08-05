@@ -1,0 +1,42 @@
+{
+  "title": "",
+  "subject": "",
+  "duration": 60,
+  "complexity": 50,
+  "description": "",
+  "questions": [
+    {
+      "title": "",
+      "type": 1,
+      "options": [
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "title": "",
+      "type": 1,
+      "options": [
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "title": "",
+      "type": 1,
+      "options": [
+        "",
+        "",
+        ""
+      ]
+    }
+  ],
+  "answers": [
+    0,
+    0,
+    0
+  ],
+  "id": 5
+}

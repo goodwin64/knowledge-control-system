@@ -1,9 +1,15 @@
-extends layout
+extends ../layout
+
 block title
 	title CYPI, Test: #{title}
+
 block styles
 	link(href='css/test-view.css', rel='stylesheet')
 	link(href='css/question-view.css', rel='stylesheet')
+
+block scripts-after-body
+	script(src="scripts/test-view.js")
+
 block content
 	.page-wrapper
 		.test-wrapper
@@ -44,7 +50,7 @@ block content
 									h4= question["title"]
 								button.clear-all-options.teal Clear all
 							.options-wrapper
-								each option, optionIndex in question["options"]
+								each option in question["options"]
 									.option-wrapper
 										input.option-select(type=selector, name="option-" + questionIndex)
 										span.option-content= option
@@ -53,5 +59,3 @@ block content
 					button#start-test START
 			.test-after
 				// social sharing
-block scripts-after-body
-	script(src="js/test-view.js")

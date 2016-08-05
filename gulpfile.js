@@ -13,7 +13,7 @@ function lazyRequireTask(taskName, path, options) {
 }
 
 lazyRequireTask('styles', './tasks/styles', {
-    src: 'app/scss/*.scss',
+    src: 'app/styles/*.styles',
     dst: 'public/css/',
     outputStyle: (isDevelop ? 'full' : 'compressed'),
     isDevelop: isDevelop
@@ -26,25 +26,25 @@ lazyRequireTask('clean', './tasks/clean', {
 
 // includes (header, footer)
 lazyRequireTask('html:build', './tasks/html:build', {
-    src: 'app/pages-static/*.pug',
+    src: 'app/assets/pages-static/*.pug',
     dst: 'public/',
 });
 
 lazyRequireTask('lint', './tasks/lint', {
     cacheFilePath: process.cwd() + '/tmp/lintCache.json',
-    src: 'app/**/*.js'
+    src: 'app/**/*.scripts'
 });
 
 // execute manually from terminal (doesn't work on NodeJS v0.10.25)
 lazyRequireTask('compress:images', './tasks/compress:images', {
-    src: 'app/images/*.*',
+    src: 'app/assets/images/*.{jpg,png,ico}',
     dst: 'public/images/'
 });
 
 // uglify, for production
-lazyRequireTask('compress:js', './tasks/compress:js', {
-    src: 'app/js/*.js',
-    dst: 'public/js/',
+lazyRequireTask('compress:scripts', './tasks/compress:scripts', {
+    src: 'app/scripts/*.js',
+    dst: 'public/scripts/',
     mangle: !isDevelop,
     compress: !isDevelop,
     output: { beautify: isDevelop }
@@ -58,10 +58,10 @@ lazyRequireTask('serve', './tasks/serve', {
     open: false,
 });
 
-gulp.task('build', gulp.series('styles', 'html:build', 'compress:js'));
+gulp.task('build', gulp.series('styles', 'html:build', 'compress:scripts'));
 
 gulp.task('watch', function() {
-    gulp.watch('app/**/*.*', gulp.series('styles', 'html:build', 'compress:js'));
+    gulp.watch('app/**/*.*', gulp.series('styles', 'html:build', 'compress:scripts'));
 });
 
 gulp.task('dev',

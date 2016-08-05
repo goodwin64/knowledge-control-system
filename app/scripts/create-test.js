@@ -252,7 +252,7 @@ function getInputTypeFromSelect(inputValue) {
     }
 }
 
-
+// TODO: remove on production
 function fillWithRandomText() {
     var textInputs = document.querySelectorAll("#test-creation-body input[type=text]");
     for (var i = 0; i < textInputs.length; i++) {
