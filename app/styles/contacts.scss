@@ -1,20 +1,21 @@
 @import "global-variables";
 
 .contacts {
-	.before-map {
+	.before-map, .after-map {
+		padding: 20px 50px;
+		background: #D7CCC8;
 
 		i.grid-7-widget-contacts-address {
 			background: url("../images/sprites/grid-7-widget-contacts.png") -16px 0 no-repeat;
 			width: 16px;
 			height: 16px;
+			display: inline-block;
 		}
 	}
 
 	.map-wrapper {
 		iframe {
-			position: relative;
-			left: 50%;
-			margin-left: -400px;
+			width: 100%;
 		}
 	}
 
