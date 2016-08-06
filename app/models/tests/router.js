@@ -10,7 +10,10 @@ var jsonParser = bodyParser.json({ type: 'application/json'});
 
 router.get("/tests", getTests);
 router.get("/test:id", getSpecificTest);
+router.get("/uploaded-test:id", onUploadSpecificTest);
 router.post("/tests", jsonParser, createTest);
+router.post("/test:id", jsonParser, sendTest);
+
 
 function getTests (req, res) {
     var testsObj = {tests: []};
@@ -59,9 +62,47 @@ function createTest (req, res) {
             // console.log(err);
         }
         res.setHeader("Content-Type", "text/plain");
-        res.status(201).send();
-        res.end("{'Test uploaded':true}"); // FIXME: on client-side this data processed as JSON, not text/plain
+        res.redirect("/uploaded-test" + newFileIndex);
     });
+}
+
+
+function sendTest(req, res) {
+    if (!req.body) return res.sendStatus(400);
+    var testData = req.body;
+    var stat = getStatistics(testData.answers, getCorrectAnswers(testData.testID));
+
+    res.status(200).json(stat);
+
+    function getStatistics(userAnswers, correctAnswers) {
+        var result = [];
+        for (var i = 0; i < userAnswers.length; i++) {
+            result[i] = userAnswers[i] == correctAnswers[i];
+        }
+        return {
+            result: result
+        }
+    }
+
+    function getCorrectAnswers(testID) {
+        var testData = require(path.join(__dirname,
+            config.express.pathToRootFromModels,
+            config.express.pathToTestsDir + "test" + testID + ".json")
+        );
+        return testData.answers;
+    }
+}
+
+function onUploadSpecificTest(req, res) {
+    var testData = require(path.join(__dirname,
+            config.express.pathToRootFromModels,
+            config.express.pathToTestsDir
+        ) + "test" + req.params.id + ".json");
+
+    res.render("test-uploaded", {
+        title: testData.title,
+        id: testData.id
+    })
 }
 
 module.exports = router;

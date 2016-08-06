@@ -2,10 +2,17 @@ extends ../../layout
 
 block title
 	title CYPI: create test
+
 block styles
 	link(rel="stylesheet" type="text/css" href="css/create-test.css")/
+
 block scripts
 	script(src="scripts/create-test.js")
+	script(src="scripts/sending-test-data.js")
+
+block scripts-after-body
+	script.
+		- onload();
 
 block content
 	div.page-wrapper
@@ -43,6 +50,3 @@ block content
 						div.button-wrapper
 							button.action-button#test-save-draft Save as draft
 			<!-- TODO: add other actions(sharing in soc. media, etc.) -->
-block scripts-after-body
-	script.
-		- onload();

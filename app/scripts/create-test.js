@@ -203,7 +203,7 @@ function setOptionsTo(selectNode, childrenOptionsType) {
 function fillTestFooter() {
     var testSubmit = document.getElementById("test-submit");
     testSubmit.addEventListener("click", function() {
-        sendTestData();
+        sendTestData("/tests", true); // from another module
         return false;
     });
 
@@ -263,52 +263,6 @@ function fillWithRandomText() {
     for (i = 0; i < optionSelectors.length; i++) {
         optionSelectors[i].children[i].querySelector("input[type='radio']").checked = true;
     }
-}
-
-
-function sendTestData() {
-    var resultJSON = {};
-    resultJSON.title = document.getElementById("test-title").value;
-    resultJSON.subject = document.getElementById("test-subject").value;
-    resultJSON.duration = +document.getElementById("test-duration").value;
-    resultJSON.complexity = +document.getElementById("test-complexity").value;
-    resultJSON.description = document.getElementById("test-description").value;
-    resultJSON.questions = [];
-    resultJSON.answers = [];
-
-    var allQuestions = document.getElementsByClassName("question-content");
-    for (var i = 0; i < allQuestions.length; i++) {
-        var questionContent = allQuestions[i];
-        var questionTitle = questionContent.querySelector(".question-title-wrapper input").value;
-        var questionType = getQuestionTypeForJSON(questionContent.querySelector(".question-head-wrapper select").value);
-        var questionOptionsWrappers = questionContent.getElementsByClassName("option-wrapper");
-        var questionOptions = [];
-        var questionAnswers = 0;
-
-        for (var j = 0; j < questionOptionsWrappers.length; j++) {
-            var option = questionOptionsWrappers[j].querySelector("input[type='text']").value;
-            var isAnswer = questionOptionsWrappers[j].firstElementChild.checked;
-            questionOptions.push(option);
-            questionAnswers += (isAnswer ? Math.pow(2, j) : 0);
-        }
-
-        resultJSON.questions.push({
-            title: questionTitle,
-            type: questionType,
-            options: questionOptions
-        });
-        resultJSON.answers.push(questionAnswers);
-    }
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/tests', true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            alert("Test uploaded");
-        }
-    };
-    xhr.send(JSON.stringify(resultJSON));
 }
 
 

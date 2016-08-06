@@ -1,15 +1,22 @@
 "use strict";
 (function() {
+    function sendTest() {
+        var testID = document.getElementById("submit-test").getAttribute("data-test-id");
+        sendTestData("/test" + testID, false); // from another module
+    }
+
     // submit test
     var submitTestButton = document.getElementById("submit-test");
     submitTestButton.onclick = function() {
         if (confirm("Are you sure?")) {
-            sendTestData();
+            clearInterval(timeIntervalID);
+            sendTest();
         }
     };
 
     // start test
     var startButton = document.getElementById("start-test");
+    var timeIntervalID;
     startButton.onclick = function() {
         this.hidden = true;
         submitTestButton.hidden = false;
@@ -18,12 +25,12 @@
         // start test (it's possible to send additional data on server to check time)
         var testDurationMs = +document.getElementById("test-duration").innerText * 1000;
         setTimeout(function () {
-            sendTestData();
+            sendTest();
         }, testDurationMs);
         var deadline = new Date(Date.parse(new Date()) + testDurationMs);
         var clockDiv = document.getElementById("clockdiv");
         clockDiv.hidden = false;
-        initializeClock(clockDiv, deadline);
+        timeIntervalID = initializeClock(clockDiv, deadline);
     };
 
     // on pagination items
@@ -103,9 +110,5 @@ function initializeClock(clockDiv, endTime) {
 
     updateClock();
     var timeInterval = setInterval(updateClock, 1000);
-}
-
-function sendTestData() {
-    console.log("Sending data");
-    // TODO: impl
+    return timeInterval;
 }

@@ -1,13 +1,19 @@
 "use strict";
 
 (function() {
+    function sendTest() {
+        var testID = document.getElementById("submit-test").getAttribute("data-test-id");
+        sendTestData("/test" + testID, false);
+    }
     var submitTestButton = document.getElementById("submit-test");
     submitTestButton.onclick = function() {
         if (confirm("Are you sure?")) {
-            sendTestData();
+            clearInterval(timeIntervalID);
+            sendTest();
         }
     };
     var startButton = document.getElementById("start-test");
+    var timeIntervalID;
     startButton.onclick = function() {
         this.hidden = true;
         submitTestButton.hidden = false;
@@ -15,12 +21,12 @@
         document.getElementsByClassName("test-pagination-elem")[0].click();
         var testDurationMs = +document.getElementById("test-duration").innerText * 1e3;
         setTimeout(function() {
-            sendTestData();
+            sendTest();
         }, testDurationMs);
         var deadline = new Date(Date.parse(new Date()) + testDurationMs);
         var clockDiv = document.getElementById("clockdiv");
         clockDiv.hidden = false;
-        initializeClock(clockDiv, deadline);
+        timeIntervalID = initializeClock(clockDiv, deadline);
     };
     var paginationAnchors = document.getElementsByClassName("test-pagination-elem");
     for (var i = 0; i < paginationAnchors.length; i++) {
@@ -86,8 +92,5 @@ function initializeClock(clockDiv, endTime) {
     }
     updateClock();
     var timeInterval = setInterval(updateClock, 1e3);
-}
-
-function sendTestData() {
-    console.log("Sending data");
+    return timeInterval;
 }

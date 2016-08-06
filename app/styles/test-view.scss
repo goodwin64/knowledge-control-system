@@ -73,6 +73,14 @@
 
 		.question-wrapper {
 			float: none;
+
+			.correct {
+				background: #afa;
+			}
+
+			.incorrect {
+				background: #faa;
+			}
 		}
 	}
 

@@ -7,6 +7,9 @@ block styles
 	link(href='css/test-view.css', rel='stylesheet')
 	link(href='css/question-view.css', rel='stylesheet')
 
+block scripts
+	script(src="scripts/sending-test-data.js")
+
 block scripts-after-body
 	script(src="scripts/test-view.js")
 
@@ -32,7 +35,7 @@ block content
 				.test-pagination.col-xs-12.col-m-4.col-4(hidden)
 					each _, i in questions
 						.test-pagination-elem(data-question-index=i)= i+1
-				button#submit-test(hidden) End test (submit answers)
+				button#submit-test.disabled-after-test(hidden, data-test-id=id) End test (submit answers)
 			#test-content.col-xs-12.col-m-8.col-8
 				each question, questionIndex in questions
 					.question-wrapper(hidden)
@@ -48,14 +51,16 @@ block content
 								h3= "Question " + (questionIndex + 1)
 								.question-title-wrapper
 									h4= question["title"]
-								button.clear-all-options.teal Clear all
+								button.clear-all-options.teal.disabled-after-test Clear all
 							.options-wrapper
 								each option in question["options"]
 									.option-wrapper
-										input.option-select(type=selector, name="option-" + questionIndex)
+										input.option-select.disabled-after-test(type=selector, name="option-" + questionIndex)
 										span.option-content= option
 							// TODO: add "help/tip" feature
 				.test-before
 					button#start-test START
 			.test-after
 				// social sharing
+		#stat(hidden)
+			block stat

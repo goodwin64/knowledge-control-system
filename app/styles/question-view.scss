@@ -110,4 +110,8 @@ button {
 		border: solid 1px #58999b;
 		box-shadow: inset 0 10px 15px 0 #75c9cc;
 	}
+
+	&:disabled {
+		background: #ccc;
+	}
 }
