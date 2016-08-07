@@ -1,1 +1,1 @@
-web: node --harmony gulpfile.js
+web: node app/server.js
