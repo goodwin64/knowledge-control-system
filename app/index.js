@@ -7,7 +7,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// app.use('/', require(path.join(__dirname, 'models/tests/router')));
+app.use('/', require(path.join(__dirname, 'models/tests/router')));
 app.get("/", function(req, res) {
     res.redirect("../index.html");
 });
