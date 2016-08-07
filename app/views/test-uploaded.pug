@@ -11,9 +11,8 @@ block scripts
 block scripts-after-body
 
 block content
-	.page-wrapper
-		h2 Your test (#{title}) has been uploaded successfully!
-		span
-			a(href="/test" + id) Pass it
-			= " "
-			| right now!
+	h2 Your test (#{title}) has been uploaded successfully!
+	span
+		a(href="/test" + id) Pass it
+		= " "
+		| right now!

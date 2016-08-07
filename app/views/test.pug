@@ -14,53 +14,52 @@ block scripts-after-body
 	script(src="scripts/test-view.js")
 
 block content
-	.page-wrapper
-		.test-wrapper
-			.test-params
-				include _test-params
-			#clockdiv.col-xs-12.col-m-12.col-12(hidden)
-				div.time-item-wrapper.col-xs-4.col-m-4.col-4
-					div
-						span.hours
-						.smalltext Hours
-				div.time-item-wrapper.col-xs-4.col-m-4.col-4
-					div
-						span.minutes
-						.smalltext Minutes
-				div.time-item-wrapper.col-xs-4.col-m-4.col-4
-					div
-						span.seconds
-						.smalltext Seconds
-			.test-controls
-				.test-pagination.col-xs-12.col-m-4.col-4(hidden)
-					each _, i in questions
-						.test-pagination-elem(data-question-index=i)= i+1
-				button#submit-test.disabled-after-test(hidden, data-test-id=id) End test (submit answers)
-			#test-content.col-xs-12.col-m-8.col-8
-				each question, questionIndex in questions
-					.question-wrapper(hidden)
-						.question-content
-							case question["type"]
-								when 1
-									- var selector = "radio"
-								when 2
-									- var selector = "checkbox"
-								default
-									- var selector = null
-							.question-head-wrapper
-								h3= "Question " + (questionIndex + 1)
-								.question-title-wrapper
-									h4= question["title"]
-								button.clear-all-options.teal.disabled-after-test Clear all
-							.options-wrapper
-								each option in question["options"]
-									.option-wrapper
-										input.option-select.disabled-after-test(type=selector, name="option-" + questionIndex)
-										span.option-content= option
-							// TODO: add "help/tip" feature
-				.test-before
-					button#start-test START
-			.test-after
-				// social sharing
-		#stat(hidden)
-			block stat
+	.test-wrapper
+		.test-params
+			include _test-params
+		#clockdiv.col-xs-12.col-m-12.col-12(hidden)
+			div.time-item-wrapper.col-xs-4.col-m-4.col-4
+				div
+					span.hours
+					.smalltext Hours
+			div.time-item-wrapper.col-xs-4.col-m-4.col-4
+				div
+					span.minutes
+					.smalltext Minutes
+			div.time-item-wrapper.col-xs-4.col-m-4.col-4
+				div
+					span.seconds
+					.smalltext Seconds
+		.test-controls
+			.test-pagination.col-xs-12.col-m-4.col-4(hidden)
+				each _, i in questions
+					.test-pagination-elem(data-question-index=i)= i+1
+			button#submit-test.disabled-after-test(hidden, data-test-id=id) End test (submit answers)
+		#test-content.col-xs-12.col-m-8.col-8
+			each question, questionIndex in questions
+				.question-wrapper(hidden)
+					.question-content
+						case question["type"]
+							when 1
+								- var selector = "radio"
+							when 2
+								- var selector = "checkbox"
+							default
+								- var selector = null
+						.question-head-wrapper
+							h3= "Question " + (questionIndex + 1)
+							.question-title-wrapper
+								h4= question["title"]
+							button.clear-all-options.teal.disabled-after-test Clear all
+						.options-wrapper
+							each option in question["options"]
+								.option-wrapper
+									input.option-select.disabled-after-test(type=selector, name="option-" + questionIndex)
+									span.option-content= option
+						// TODO: add "help/tip" feature
+			.test-before
+				button#start-test START
+		.test-after
+			// social sharing
+	#stat(hidden)
+		block stat
