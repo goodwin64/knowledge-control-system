@@ -6,10 +6,12 @@ Main idea is to keep modularity. Hence, the structure is the following:
 | root
      | app
             | assets (static: images, some HTML/Pug, partials)
+            | errors (NodeJS error handlers)
             | models (files for operating with each Entity)
             | scripts (now, all scripts are in one big heap; later, this dir will be separated by categories)
             | styles (also, like in scripts, one big heap)
             | views (Jade/Pug files as templates for dynamic pages)
+                | errors (error views, .pug files)
             > config.js (options for server)
             > index.js (express app)
             > layout.pug (layout for all .pug files, both static and dynamic)

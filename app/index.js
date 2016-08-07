@@ -8,7 +8,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use('/', require(path.join(__dirname, 'models/tests/router')));
-app.get("/", function(req, res) {
+app.get('/', function(req, res) {
     res.redirect("../index.html");
 });
 // app.use('/api', require(path.join(__dirname, 'models/questions/router')));
@@ -20,8 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('connect-livereload')());
 
 // FINALLY, use any error handlers
-// TODO: impl
-// app.use(require('app/errors/not-found'));
+app.use(require(path.join(__dirname, 'errors/not-found')));
 
 // It's possible to test the app instance via supertest
 module.exports = app;
