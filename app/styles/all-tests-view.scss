@@ -9,20 +9,11 @@
 }
 
 .panel-primary {
-	border-color: #337ab7;
-
-	&>.panel-heading {
-		color: #fff;
+	&>.desc-info {
 		background-color: #337ab7;
 		border-color: #337ab7;
 		padding: 10px 15px;
 		border-bottom: 1px solid transparent;
-
-		.panel-title {
-			margin-top: 0;
-			margin-bottom: 0;
-			text-align: center;
-		}
 	}
 
 	ul {

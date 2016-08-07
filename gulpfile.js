@@ -71,5 +71,5 @@ gulp.task('watch', function() {
 });
 
 gulp.task('dev',
-    gulp.series('build', gulp.parallel('watch', 'serve'))
+    gulp.series('clean', 'build', gulp.parallel('watch', 'serve'))
 );

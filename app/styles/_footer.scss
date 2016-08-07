@@ -1,7 +1,8 @@
 @import "global-variables";
 
 footer {
-	@extend .page-wrapper;
+	@extend .main-page-element;
+	background-color: rgba(1, 1, 1, 0);
 
 	details {
 		padding: 5px;

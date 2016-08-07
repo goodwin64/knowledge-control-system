@@ -46,5 +46,5 @@ Blocks order in "layout.pug" is the following:
 ### SASS files
 1. Extension for files is *.scss*.
 2. Global variables are in the "_global-variables" file. It should not contain any styles to prevent code duplicates while extending.
-3. Basic set of styles that corresponds EVERY page is in the "all-pages-common" file. Do not extend from it to prevent code duplicates.
+3. Basic set of styles that corresponds EVERY page is in the "all-pages-common" file. Do not extend from it to prevent code duplicates. It included by default in all pages (in layout).
 4. "Extending grid in SASS, not setting it in HTML" is an **experiment**.

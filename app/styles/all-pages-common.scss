@@ -14,8 +14,25 @@
 // ------------------------------ page structure (#page-wrap)
 @import "header";
 
-.content {
-	padding: 5px;
+.main-page-element {
+	@extend .col-10;
+	margin: 0 auto;
+	overflow: hidden;
+	background: rgba(100%, 100%, 100%, 0.95);
+}
+
+.page-wrapper {
+	margin-top: -1px;
+	border: 1px solid #000;
+
+	.desc-info {
+		padding: 20px 50px;
+		background: #ecf0f1;
+
+		h1, h2, h3, h4, h5, h6 {
+			//color: #fefefe;
+		}
+	}
 }
 
 .sidebar {
@@ -29,15 +46,6 @@ body {
     background: $main-bg-image-alt-color url($path-to-root-dir + $main-bg-image) no-repeat center center fixed;
     @include background-size(cover); // !!! after background-property !!!
 	font-family: 'Open Sans', serif;
-}
-
-.page-wrapper {
-    // sizes and position
-	@extend .col-10;
-    margin: 0 auto;
-	overflow: hidden;
-    // styles and color design
-    background: rgba(100%, 100%, 100%, 0.95);
 }
 
 a {
