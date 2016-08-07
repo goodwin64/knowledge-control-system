@@ -9,24 +9,6 @@ block styles
 
 block scripts
 
-
-block content
-	.panel.panel-primary
-		.panel-heading
-			h3.panel-title Tests list
-		ul.list-group
-			each test in tests
-				li.test-wrapper.list-group-item
-					.test-params
-						- var title = test.title;
-						- var subject = test.subject;
-						- var description = test.description;
-						- var duration = test.duration;
-						- var complexity = test.complexity;
-						include _test-params
-					button
-						a(href="test" + test.id) PASS
-
 block scripts-after-body
 	script(src="http://code.jquery.com/jquery-1.12.4.min.js")
 	script(type='text/javascript', src='scripts/paginathing.js')
@@ -38,3 +20,21 @@ block scripts-after-body
 				containerClass: 'panel-footer'
 			});
 		});
+
+block content
+	.panel.panel-primary
+		.panel-heading
+			h3.panel-title Tests list
+		ul.list-group
+			each test in tests
+				li.test-wrapper.list-group-item
+					.test-params
+						// variables below are used in "_test-params", DO NOT DELETE
+						- var title = test.title;
+						- var subject = test.subject;
+						- var description = test.description;
+						- var duration = test.duration;
+						- var complexity = test.complexity;
+						include _test-params
+					button
+						a(href="test" + test.id) PASS
