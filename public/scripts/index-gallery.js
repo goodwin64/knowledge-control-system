@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    $(".popup-gallery").magnificPopup({
-        delegate: "a",
-        type: "image",
-        closeOnContentClick: true
-    });
+$(document).ready(function () {
+    $(".popup-gallery").magnificPopup({delegate: "a", type: "image", closeOnContentClick: !0})
 });

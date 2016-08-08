@@ -1,15 +1,1 @@
-const sh = require("shelljs");
-
-function countFiles(folderPath) {
-    var count = 0;
-    sh.cd(folderPath);
-    var files = sh.ls() || [];
-    for (var i = 0; i < files.length; i++) {
-        if (files[i].match(/.*\..*/)) {
-            count++;
-        }
-    }
-    return count;
-}
-
-module.exports = countFiles;
+function countFiles(s){var e=0;sh.cd(s);for(var r=sh.ls()||[],t=0;t<r.length;t++)r[t].match(/.*\..*/)&&e++;return e}const sh=require("shelljs");module.exports=countFiles;

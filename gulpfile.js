@@ -1,6 +1,6 @@
 'use strict';
 
-const isDevelop = true; // false on "production"
+const isDevelop = false; // false on "production"
 const gulp = require('gulp');
 
 function lazyRequireTask(taskName, path, options) {
