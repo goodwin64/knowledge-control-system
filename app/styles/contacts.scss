@@ -2,21 +2,51 @@
 
 .contacts {
 	.before-map {
-		i.grid-7-widget-contacts-address {
+		i.address {
 			background: url("../images/sprites/grid-7-widget-contacts.png") -16px 0 no-repeat;
-			width: 16px;
-			height: 16px;
-			display: inline-block;
 		}
 	}
 
 	.map-wrapper {
 		iframe {
 			width: 100%;
+			height: 250px;
+
+			@media screen and (min-height: 760px) {
+				& {
+					height: 600px;
+				}
+			}
 		}
 	}
 
 	.after-map {
+		& > div {
+			display: inline-block;
+			margin: 0 25px 0 0;
+		}
 
+		i.phone {
+			background: url("../images/sprites/grid-7-widget-contacts.png") 0 0 no-repeat;
+		}
+
+		i.website {
+			background: url("../images/sprites/grid-7-widget-contacts.png") 0 -32px no-repeat;
+		}
+
+		i.facebook {
+			background: url("../images/sprites/grid-7-widget-contacts.png") -32px -32px no-repeat;
+		}
+	}
+
+	// inside "before" & "after map", but common rules
+	span.phone, span.address, .links a {
+		margin-left: 8px;
+	}
+
+	i.contacts {
+		width: 16px;
+		height: 16px;
+		display: inline-block;
 	}
 }

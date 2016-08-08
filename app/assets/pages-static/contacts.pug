@@ -9,13 +9,27 @@ block styles
 block content
 	.contacts
 		.before-map.desc-info
-			h2 Where we are?
-			i.grid-7-widget-contacts-address
-			span Adress: Kudryashova st., 18, Kyiv, Ukraine
+			div.address
+				h2 Where we are?
+				i.contacts.address
+				span.address Adress: Kudryashova st., 18, Kyiv, Ukraine
 		.map-wrapper
-			iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2541.5681614408977!2d30.485055815662154!3d50.43051697947267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cee9e88c9d2f%3A0x1b11dcb5203b8420!2sEpam!5e0!3m2!1sru!2sua!4v1470353896105" width="800" height="600" frameborder="0" style="border:0" allowfullscreen)
+			iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.612797919835!2d30.487317083021154!3d50.430513050136625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1b11dcb5203b8420!2sEpam!5e0!3m2!1sru!2sua!4v1470655850191" frameborder="0" style="border:0" allowfullscreen)
 		.after-map.desc-info
 			h2 Contact info
-			p Phones:
-			div P: +380-44-390-5457
-			div F: +380-44-390-0861
+			div.phones
+				p Phones:
+				div
+					i.contacts.phone
+					span.phone P: +380-44-390-5457
+				div
+					i.contacts.phone
+					span.phone F: +380-44-390-0861
+			div.links
+				p Links
+				div
+					i.contacts.website
+					a(href="https://www.epam-group.ru/") Web-site
+				div
+					i.contacts.facebook
+					a(href="https://www.facebook.com/EPAM.ru") Facebook
