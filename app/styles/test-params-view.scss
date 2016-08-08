@@ -5,11 +5,11 @@
 		color: #f88;
 	}
 
-	span#test-duration:after {
+	span.test-duration:after {
 		content: ' sec';
 	}
 
-	span#test-complexity:after {
+	span.test-complexity:after {
 		content: '%';
 	}
 }

@@ -24,8 +24,16 @@ block scripts-after-body
 
 block content
 	.panel.panel-primary
-		div
-			input#search-test(type="text" name="search" placeholder="Search..")
+		div.list-controls
+			input#test-search(type="text" name="search" placeholder="Search..")
+			select#test-sort
+				//option(value="date") By date created
+				option(value="title") By title
+				option(value="subject") By subject
+				option(value="duration") By duration
+				option(value="complexity") By complexity
+			input(type="checkbox" id="by-increasing")
+			label(for="by-increasing") By increasing
 		.desc-info
 			h2.panel-title Tests list
 		ul.list-group

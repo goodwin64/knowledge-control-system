@@ -11,25 +11,38 @@
 .panel-primary {
 	position: relative;
 
-	#search-test {
-		width: 130px;
-		box-sizing: border-box;
-		border: 2px solid #ccc;
-		border-radius: 4px;
-		font-size: 16px;
-		background-color: white;
-		background-image: url($path-to-root-dir + 'images/searchicon.png');
-		background-position: 10px 10px;
-		background-repeat: no-repeat;
-		padding: 12px 20px 12px 40px;
-		-webkit-transition: width 0.4s ease-in-out;
-		transition: width 0.4s ease-in-out;
+	.list-controls {
+		display: inline-block;
 		position: absolute;
 		top: 10px;
 		right: 10px;
+		$elems-font-size: 16px;
 
-		&:focus {
-			width: 200px;
+		#test-sort, #test-search {
+			padding: 12px 20px 12px 40px;
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+			border: 2px solid #ccc;
+			background-color: #fff;
+			box-sizing: border-box;
+			border-radius: 4px;
+			font-size: $elems-font-size;
+		}
+
+		#test-search {
+			width: 130px;
+			background-image: url($path-to-root-dir + 'images/searchicon.png');
+			-webkit-transition: width 0.4s ease-in-out;
+			transition: width 0.4s ease-in-out;
+
+			&:focus {
+				width: 200px;
+			}
+		}
+
+		#test-sort {
+			background-image: url($path-to-root-dir + 'images/filtericon.png');
+			font-size: $elems-font-size - 2px;
 		}
 	}
 
