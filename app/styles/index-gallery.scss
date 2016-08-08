@@ -1,0 +1,23 @@
+.wrapper-gallery {
+	margin: 20px 0;
+	padding: 10px;
+	text-align: center;
+
+	.wrapper-gallery-item {
+		padding: 15px;
+		margin: 5px;
+		display: inline-block;
+		width: 300px;
+		height: 300px;
+
+		a {
+			//outline: none;
+
+			img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+		}
+	}
+
+}

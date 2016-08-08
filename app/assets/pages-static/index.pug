@@ -5,6 +5,15 @@ block title
 
 block styles
 	link(rel="stylesheet" type="text/css" href="css/index-slider.css")/
+	link(rel="stylesheet" type="text/css" href="css/index-gallery.css")/
+	link(rel="stylesheet" type="text/css" href="css/magnific-popup.css")/
+
+block scripts
+	script(src="https://code.jquery.com/jquery-1.12.4.min.js")
+	script(src="scripts/jquery.magnific-popup.js")
+
+block scripts-after-body
+	script(src="scripts/index-gallery.js")
 
 block content
 	.desc-info
@@ -27,4 +36,15 @@ block content
 			label(for='slide3')
 			label(for='slide4')
 			label(for='slide5')
-
+	.desc-info
+		h2 Gallery
+	div.wrapper-gallery.popup-gallery
+		.wrapper-gallery-item
+			a(class="image-popup-vertical-fit test-popup-link" href="images/slider/small1.jpg" title="Desc1")
+				img(src="images/slider/small1.jpg")
+		.wrapper-gallery-item
+			a(class="image-popup-vertical-fit test-popup-link" href="images/gallery/2.jpg" title="Desc2")
+				img(src="images/gallery/2.jpg")
+		.wrapper-gallery-item
+			a(class="image-popup-vertical-fit test-popup-link" href="images/slider/small3.png" title="Desc3")
+				img(src="images/slider/small3.png")
