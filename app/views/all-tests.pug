@@ -8,10 +8,10 @@ block styles
 	link(href='css/all-tests-view.css', rel='stylesheet')
 
 block scripts
-
-block scripts-after-body
 	script(src="https://code.jquery.com/jquery-1.12.4.min.js")
 	script(type='text/javascript', src='scripts/paginathing.js')
+
+block scripts-after-body
 	script(type='text/javascript').
 		jQuery(document).ready(function ($) {
 			$('.list-group').paginathing({
@@ -20,9 +20,12 @@ block scripts-after-body
 				containerClass: 'panel-footer'
 			});
 		});
+	script(src="scripts/all-tests.js")
 
 block content
 	.panel.panel-primary
+		div
+			input#search-test(type="text" name="search" placeholder="Search..")
 		.desc-info
 			h2.panel-title Tests list
 		ul.list-group
