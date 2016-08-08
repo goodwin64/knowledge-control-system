@@ -23,7 +23,7 @@
         document.getElementsByClassName("test-pagination")[0].hidden = false;
         document.getElementsByClassName("test-pagination-elem")[0].click();
         // start test (it's possible to send additional data on server to check time)
-        var testDurationMs = +document.getElementById("test-duration").innerText * 1000;
+        var testDurationMs = +document.getElementsByClassName("test-duration")[0].innerText * 1000;
         setTimeout(function () {
             sendTest();
         }, testDurationMs);

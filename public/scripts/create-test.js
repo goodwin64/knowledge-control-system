@@ -1,6 +1,17 @@
 function onload() {
     var submitQuestionsNumber = document.getElementById("submit-questions-number");
     var inputQuestionsNumber = document.getElementById("questions-number");
+    var changeQuestionsNumberButtons = document.getElementsByClassName("change-questions-number");
+    for (var i = 0; i < changeQuestionsNumberButtons.length; i++) {
+        changeQuestionsNumberButtons[i].onclick = function() {
+            var newValue = +inputQuestionsNumber.value + +this.value;
+            if (newValue >= +inputQuestionsNumber.getAttribute("min") && newValue <= +inputQuestionsNumber.getAttribute("max")) {
+                inputQuestionsNumber.value = newValue;
+            } else {
+                alert("Questions count is a positive number l.t. 51!");
+            }
+        };
+    }
     submitQuestionsNumber.addEventListener("click", onSubmitQuestionsNumber);
     inputQuestionsNumber.addEventListener("keyup", function(event) {
         event.preventDefault();
@@ -175,17 +186,6 @@ function getInputTypeFromSelect(inputValue) {
 
       default:
         return null;
-    }
-}
-
-function fillWithRandomText() {
-    var textInputs = document.querySelectorAll("#test-creation-body input[type=text]");
-    for (var i = 0; i < textInputs.length; i++) {
-        textInputs[i].value = Math.random();
-    }
-    var optionSelectors = document.getElementsByClassName("options-wrapper");
-    for (i = 0; i < optionSelectors.length; i++) {
-        optionSelectors[i].children[i].querySelector("input[type='radio']").checked = true;
     }
 }
 

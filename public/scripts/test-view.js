@@ -19,7 +19,7 @@
         submitTestButton.hidden = false;
         document.getElementsByClassName("test-pagination")[0].hidden = false;
         document.getElementsByClassName("test-pagination-elem")[0].click();
-        var testDurationMs = +document.getElementById("test-duration").innerText * 1e3;
+        var testDurationMs = +document.getElementsByClassName("test-duration")[0].innerText * 1e3;
         setTimeout(function() {
             sendTest();
         }, testDurationMs);
