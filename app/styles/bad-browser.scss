@@ -1,0 +1,35 @@
+.away_content {
+	text-align: center;
+	padding: 20px 20px 35px;
+	background: #fcfcfc;
+
+	.good_browser {
+		display: inline-block;
+		padding: 20px 20px 15px;
+		margin: 0 10px;
+		border-radius: 2px;
+		font-weight: 500;
+		-webkit-font-smoothing: subpixel-antialiased;
+		-moz-osx-font-smoothing: auto;
+		font-size: 14px;
+
+		.browser_icon {
+			height: 80px;
+			width: 80px;
+			background: url(https://new.vk.com/images/browsers.png) no-repeat 0 0;
+			margin-bottom: 10px;
+		}
+
+		.firefox {
+			background-position: 0 -82px;
+		}
+
+		.chrome {
+			background-position: 0 -164px;
+		}
+
+		.opera {
+			background-position: 0 -246px;
+		}
+	}
+}

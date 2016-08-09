@@ -7,6 +7,17 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="css/about.css"/>
     <link rel="stylesheet" type="text/css" href="css/all-pages-common.css"/>
+    <script>
+      if (!document.addEventListener) { // if IE 8
+	      var curURL = window.location.href;
+	      var curPage = curURL.slice(curURL.lastIndexOf("/") + 1);
+	      if (curPage != "bad-browser.html") {
+		      var curDir = curURL.slice(0, curURL.lastIndexOf("/") + 1);
+		      window.location.replace(curDir + "bad-browser.html");
+	      }
+      }
+
+    </script>
   </head>
   <body>
     <header>

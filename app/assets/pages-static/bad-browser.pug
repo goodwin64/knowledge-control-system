@@ -1,0 +1,24 @@
+extends ../../layout
+
+block title
+	title CYPI: Bad browser
+
+block styles
+	link(rel="stylesheet" type="text/css" href="css/bad-browser.css")/
+
+block content
+	.away_content.bad_browser
+		.desc-info
+			h2 Для работы на сайте необходима поддержка JavaScript и Cookies.
+		div
+			| Чтобы использовать все возможности сайта, скачайте и установите один из этих браузеров:
+			.good_browsers
+				a.good_browser(href='http://www.google.com/chrome/', target='_blank')
+					.browser_icon.chrome
+					| Chrome
+				a.good_browser(href='http://www.opera.com/', target='_blank')
+					.browser_icon.opera
+					| Opera
+				a.good_browser(href='http://www.mozilla-europe.org/', target='_blank')
+					.browser_icon.firefox
+					| Firefox

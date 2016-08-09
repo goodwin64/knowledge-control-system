@@ -1,0 +1,65 @@
+
+<html>
+<head>
+	<title>CYPI: Bad browser</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="css/bad-browser.css"/>
+	<link rel="stylesheet" type="text/css" href="css/all-pages-common.css"/>
+	<script>
+		if (!document.addEventListener) { // if IE 8
+			var curURL = window.location.href;
+			var curPage = curURL.slice(curURL.lastIndexOf("/") + 1);
+			if (curPage != "bad-browser.html") {
+				var curDir = curURL.slice(0, curURL.lastIndexOf("/") + 1);
+				window.location.replace(curDir + "bad-browser.html");
+			}
+		}
+	
+	</script>
+</head>
+<body>
+<header>
+	<h1><span>{</span>Can you pass it?<span>}</span></h1>
+	<nav>
+		<ul>
+			<li class="col-m-3 col-2 dropdown"><a class="dropbtn" href="index.html">Stuff</a>
+				<div class="dropdown-content"><a href="tests">Tests</a><a href="questions">Questions</a><a
+						href="create-test.html">Create test</a><a href="my-drafts">My drafts</a></div>
+			</li>
+			<li class="col-m-3 col-2"><a href="leaders">Leaders</a></li>
+			<li class="col-m-3 col-2"><a href="contacts.html">Contacts</a></li>
+			<li class="col-m-3 col-2 dropdown"><a class="dropbtn" href="about.html">About</a>
+				<div class="dropdown-content"><a href="faq.html">FAQ</a></div>
+			</li>
+			<li class="col-m-12 col-4"><a href="#">Login / Register</a></li>
+		</ul>
+	</nav>
+</header>
+<div class="main-page-element">
+	<div class="page-wrapper">
+		<div class="away_content bad_browser">
+			<div class="desc-info">
+				<h2>Для работы на сайте необходима поддержка JavaScript и Cookies.</h2>
+			</div>
+			<div>Чтобы использовать все возможности сайта, скачайте и установите один из этих браузеров:
+				<div class="good_browsers"><a class="good_browser" href="http://www.google.com/chrome/" target="_blank">
+					<div class="browser_icon chrome"></div>
+					Chrome</a><a class="good_browser" href="http://www.opera.com/" target="_blank">
+					<div class="browser_icon opera"></div>
+					Opera</a><a class="good_browser" href="http://www.mozilla-europe.org/" target="_blank">
+					<div class="browser_icon firefox"></div>
+					Firefox</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<footer>
+	<details>
+		<summary>Copyright</summary>
+		<p>Max Donchenko, Kyiv, 2016</p><a href="https://vk.com/write20693334">Write me</a>
+	</details>
+</footer>
+</body>
+</html>

@@ -5,9 +5,21 @@ html
 		meta(charset="UTF-8")/
 		meta(name="viewport" content="width=device-width, initial-scale=1")/
 		link(rel="shortcut icon" type="image/x-icon" href="images/favicon.ico")/
+
 		block styles
 		link(rel="stylesheet" type="text/css" href="css/all-pages-common.css")/
+
 		block scripts
+		script.
+			if (!document.addEventListener) { // if IE 8
+				var curURL = window.location.href;
+				var curPage = curURL.slice(curURL.lastIndexOf("/") + 1);
+				if (curPage != "bad-browser.html") {
+					var curDir = curURL.slice(0, curURL.lastIndexOf("/") + 1);
+					window.location.replace(curDir + "bad-browser.html");
+				}
+			}
+
 	body
 		include assets/partials/header
 		.main-page-element

@@ -11,6 +11,17 @@
     <link rel="stylesheet" type="text/css" href="css/all-pages-common.css"/>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="scripts/jquery.magnific-popup.js"></script>
+    <script>
+      if (!document.addEventListener) { // if IE 8
+	      var curURL = window.location.href;
+	      var curPage = curURL.slice(curURL.lastIndexOf("/") + 1);
+	      if (curPage != "bad-browser.html") {
+		      var curDir = curURL.slice(0, curURL.lastIndexOf("/") + 1);
+		      window.location.replace(curDir + "bad-browser.html");
+	      }
+      }
+
+    </script>
   </head>
   <body>
     <header>
@@ -41,11 +52,11 @@
           <input id="slide4" type="radio" name="point"/>
           <input id="slide5" type="radio" name="point"/>
           <div class="slider">
-            <div class="slides slide1"></div>
-            <div class="slides slide2"></div>
-            <div class="slides slide3"></div>
-            <div class="slides slide4"></div>
-            <div class="slides slide5"></div>
+	          <label class="slides slide1" for="slide2"></label>
+	          <label class="slides slide2" for="slide3"></label>
+	          <label class="slides slide3" for="slide4"></label>
+	          <label class="slides slide4" for="slide5"></label>
+	          <label class="slides slide5" for="slide1"></label>
           </div>
           <div class="controls">
             <label for="slide1"></label>
